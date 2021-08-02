@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liudi.back.mapper.SchoolCodeMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.liudi.back.entity.SchoolCode">
+        <id column="base_id" property="baseId"/>
+        <result column="base_create_time" property="baseCreateTime"/>
+        <result column="base_update_time" property="baseUpdateTime"/>
+        <result column="creator" property="creator"/>
+        <result column="is_delete" property="isDelete"/>
+        <result column="code_No" property="codeNo"/>
+        <result column="school_name" property="schoolName"/>
+        <result column="Notes" property="Notes"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        base_id, base_create_time, base_update_time, creator, is_delete, code_No, school_name, Notes
+    </sql>
+
+
+    <select id="findListPage" resultMap="BaseResultMap" parameterType="com.liudi.back.entity.SchoolCode">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM school_code
+        <where>
+                <if test= "schoolCode.baseId !=null and schoolCode.baseId != ''"> and base_id = #{schoolCode.baseId}</if>
+                <if test= "schoolCode.baseCreateTime !=null "> and base_create_time =  #{schoolCode.baseCreateTime} </if>
+                <if test= "schoolCode.baseUpdateTime !=null "> and base_update_time =  #{schoolCode.baseUpdateTime} </if>
+                <if test= "schoolCode.creator !=null and schoolCode.creator != ''"> and creator = #{schoolCode.creator}</if>
+                <if test= "schoolCode.isDelete !=null "> and is_delete =  #{schoolCode.isDelete} </if>
+                <if test= "schoolCode.codeNo !=null and schoolCode.codeNo != ''"> and code_No = #{schoolCode.codeNo}</if>
+                <if test= "schoolCode.schoolName !=null and schoolCode.schoolName != ''"> and school_name = #{schoolCode.schoolName}</if>
+                <if test= "schoolCode.Notes !=null and schoolCode.Notes != ''"> and Notes = #{schoolCode.Notes}</if>
+        </where>
+    </select>
+
+
+</mapper>

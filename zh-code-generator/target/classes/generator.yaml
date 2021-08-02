@@ -1,0 +1,20 @@
+#数据库地址
+db:
+  driver: com.mysql.cj.jdbc.Driver
+#  url: jdbc:mysql://123.232.102.30:11702/zhenghe_system_template?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8
+#  username: root
+#  password: zhenghe@816
+  url: jdbc:mysql://39.96.72.22:3306/smart_search_application?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8
+  username: root
+  password: 123456
+#  作者
+author: LiuD
+#包名
+#packageName: cn.zhenghe.commons.uaa
+packageName: com.liudi.back
+
+#生成文件路径
+#filePath: /zhenghe-commons/zhenghe-commons-uaa/src/main/java
+filePath: /back/src/main/java
+#生成mapper文件路径
+fileMapperPath: /back/src/main/resources/mapper
