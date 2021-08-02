@@ -7,7 +7,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @EnableSwagger2
-@MapperScan()
+@MapperScan(basePackages = "com.liudi.back.mapper")
 public class BackApplication {
 
     public static void main(String[] args) {

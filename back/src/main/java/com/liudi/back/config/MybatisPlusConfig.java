@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
  * desc：mybatis-plus 分页配置
  */
 @Configuration
-@MapperScan({"com.liudi.back.mapper"})
+@MapperScan("com.liudi.back.mapper")
 public class MybatisPlusConfig {
 
     /**

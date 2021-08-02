@@ -1,5 +1,6 @@
 package com.liudi.back.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.liudi.back.entity.SchoolCode;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import java.util.List;
@@ -7,6 +8,7 @@ import java.util.List;
 import com.liudi.back.utils.SuperMapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
 
 /**
  * <p>
@@ -16,8 +18,11 @@ import org.apache.ibatis.annotations.Param;
  * @author LiuD
  * @since 2021-08-02
  */
-@Mapper
-public interface SchoolCodeMapper extends SuperMapper<SchoolCode> {
+@Component
+public interface SchoolCodeMapper extends BaseMapper<SchoolCode> {
 
  List<SchoolCode> findListPage(Page page ,@Param("schoolCode")SchoolCode schoolCode);
+
+ int add(@Param("schoolCode") SchoolCode schoolCode);
+
 }

@@ -36,5 +36,10 @@
         </where>
     </select>
 
+    <insert id="add">
+        INSERT INTO `smart_search_application`.`school_code`(`base_id`, `base_create_time`, `creator`, `code_No`, `school_name`, `Notes`) VALUES
+        ('cab2a10abe034e7283fd52860a2334f8', '2021-08-02 14:26:36', 'ld', '10001', '北京大学', '北京医科大学并入')
+    </insert>
+
 
 </mapper>

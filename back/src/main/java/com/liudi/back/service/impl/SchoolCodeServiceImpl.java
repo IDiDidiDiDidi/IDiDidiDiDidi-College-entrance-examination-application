@@ -24,6 +24,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
  */
 @Service("iSchoolCodeService")
 public class SchoolCodeServiceImpl implements ISchoolCodeService {
+
     @Autowired
     private SchoolCodeMapper schoolCodeMapper;
 
@@ -37,8 +38,8 @@ public class SchoolCodeServiceImpl implements ISchoolCodeService {
         SchoolCode schoolCode = BeanCopyUtil.convertBean(schoolCodeDto, SchoolCode.class);
 
 
-        schoolCodeMapper.insert(schoolCode);
-        return null;
+        int insert = schoolCodeMapper.insert(schoolCode);
+        return Message.success(insert);
     }
 
 }

@@ -36,7 +36,6 @@ public class SchoolCodeController {
     @PostMapping("")
     public Message addSchoolCode(@RequestBody SchoolCodeDto schoolCodeDto) {
         try {
-
             return iSchoolCodeService.save(schoolCodeDto);
         } catch (Exception e) {
             logger.error("保存异常：===》" + e);

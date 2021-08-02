@@ -1,6 +1,7 @@
 package com.liudi.back.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.liudi.back.core.base.BaseEntity;
 import lombok.Data;
 import com.baomidou.mybatisplus.annotation.TableName;
 
@@ -14,7 +15,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
  */
 @Data
 @TableName("school_code")
-public class SchoolCode {
+public class SchoolCode extends BaseEntity {
 
     /**
      * 学校代码
