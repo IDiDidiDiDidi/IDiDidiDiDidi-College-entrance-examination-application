@@ -41,3 +41,8 @@ swagger:
   scan:
     basePackage: com.liudi.back.controller
     apiTitle: 后台
+
+logging:
+  level:
+    com.liudi.back: DEBUG
+
