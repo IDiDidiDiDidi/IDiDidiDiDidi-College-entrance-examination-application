@@ -5,8 +5,6 @@ import com.liudi.back.entity.SchoolCode;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import java.util.List;
 
-import com.liudi.back.utils.SuperMapper;
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
@@ -18,7 +16,6 @@ import org.springframework.stereotype.Component;
  * @author LiuD
  * @since 2021-08-02
  */
-@Component
 public interface SchoolCodeMapper extends BaseMapper<SchoolCode> {
 
  List<SchoolCode> findListPage(Page page ,@Param("schoolCode")SchoolCode schoolCode);

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import com.liudi.back.dto.SchoolCodeDto;
 import com.liudi.back.service.ISchoolCodeService;
 
+import java.util.List;
 
 
 /**
@@ -34,9 +35,9 @@ public class SchoolCodeController {
 
     @ApiOperation(value = "保存")
     @PostMapping("")
-    public Message addSchoolCode(@RequestBody SchoolCodeDto schoolCodeDto) {
+    public Message addSchoolCode(@RequestBody List<SchoolCodeDto> schoolCodeDtos) {
         try {
-            return iSchoolCodeService.save(schoolCodeDto);
+            return iSchoolCodeService.save(schoolCodeDtos);
         } catch (Exception e) {
             logger.error("保存异常：===》" + e);
             return Message.fail(e.getMessage());

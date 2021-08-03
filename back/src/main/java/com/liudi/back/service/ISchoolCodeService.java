@@ -24,5 +24,5 @@ public interface ISchoolCodeService {
      * @param schoolCodeDto
      * @return
      */
-    Message save(SchoolCodeDto schoolCodeDto);
+    Message save(List<SchoolCodeDto> schoolCodeDto);
 }
