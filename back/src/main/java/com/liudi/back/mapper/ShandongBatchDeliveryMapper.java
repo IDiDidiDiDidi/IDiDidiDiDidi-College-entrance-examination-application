@@ -1,0 +1,20 @@
+package com.liudi.back.mapper;
+
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.liudi.back.entity.ShandongBatchDelivery;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import java.util.List;
+import org.apache.ibatis.annotations.Param;
+
+/**
+ * <p>
+ * 山东省普通类常规批第一次志愿投档情况 Mapper 接口
+ * </p>
+ *
+ * @author LiuD
+ * @since 2021-08-03
+ */
+public interface ShandongBatchDeliveryMapper extends BaseMapper<ShandongBatchDelivery> {
+
+ List<ShandongBatchDelivery> findListPage(Page page ,@Param("shandongBatchDelivery")ShandongBatchDelivery shandongBatchDelivery);
+}

@@ -33,7 +33,7 @@ public class MysqlGenerator {
      * </p>
      */
     public static String scannerTable() {
-        return "school_code";
+        return "shandong_batch_delivery";
     }
 
     /**

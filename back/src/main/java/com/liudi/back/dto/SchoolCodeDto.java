@@ -1,8 +1,12 @@
 package com.liudi.back.dto;
+
+import com.liudi.back.utils.PageDto;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
- import java.util.Date;
+
+import java.util.Date;
+
 /**
  * <p>
  * 技术经纪人Dto
@@ -11,9 +15,9 @@ import lombok.Data;
  * @author LiuD
  * @since 2021-08-02
  */
- @Data
- @ApiModel(value = "SchoolCodeDto对象", description = "技术经纪人")
- public class SchoolCodeDto {
+@Data
+@ApiModel(value = "SchoolCodeDto对象", description = "技术经纪人")
+public class SchoolCodeDto extends PageDto {
 
     @ApiModelProperty("主键Id")
     private String baseId;

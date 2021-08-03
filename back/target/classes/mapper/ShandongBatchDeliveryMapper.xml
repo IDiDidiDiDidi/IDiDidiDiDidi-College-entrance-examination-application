@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liudi.back.mapper.ShandongBatchDeliveryMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.liudi.back.entity.ShandongBatchDelivery">
+        <id column="base_id" property="baseId"/>
+        <result column="base_create_time" property="baseCreateTime"/>
+        <result column="base_update_time" property="baseUpdateTime"/>
+        <result column="creator" property="creator"/>
+        <result column="is_delete" property="isDelete"/>
+        <result column="major" property="major"/>
+        <result column="major_no" property="majorNo"/>
+        <result column="school_name" property="schoolName"/>
+        <result column="school_no" property="schoolNo"/>
+        <result column="plans_number" property="plansNumber"/>
+        <result column="pitch_plans_number" property="pitchPlansNumber"/>
+        <result column="cast_number" property="castNumber"/>
+        <result column="lowest_score" property="lowestScore"/>
+        <result column="highest_score" property="highestScore"/>
+        <result column="lowest_position" property="lowestPosition"/>
+        <result column="highest_position" property="highestPosition"/>
+        <result column="year" property="year"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        base_id, base_create_time, base_update_time, creator, is_delete, major, major_no, school_name, school_no, plans_number, pitch_plans_number, cast_number, lowest_score, highest_score, lowest_position, highest_position, year
+    </sql>
+
+
+    <select id="findListPage" resultMap="BaseResultMap" parameterType="com.liudi.back.entity.ShandongBatchDelivery">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM shandong_batch_delivery
+        <where>
+                <if test= "shandongBatchDelivery.baseId !=null and shandongBatchDelivery.baseId != ''"> and base_id = #{shandongBatchDelivery.baseId}</if>
+                <if test= "shandongBatchDelivery.baseCreateTime !=null "> and base_create_time =  #{shandongBatchDelivery.baseCreateTime} </if>
+                <if test= "shandongBatchDelivery.baseUpdateTime !=null "> and base_update_time =  #{shandongBatchDelivery.baseUpdateTime} </if>
+                <if test= "shandongBatchDelivery.creator !=null and shandongBatchDelivery.creator != ''"> and creator = #{shandongBatchDelivery.creator}</if>
+                <if test= "shandongBatchDelivery.isDelete !=null "> and is_delete =  #{shandongBatchDelivery.isDelete} </if>
+                <if test= "shandongBatchDelivery.major !=null and shandongBatchDelivery.major != ''"> and major = #{shandongBatchDelivery.major}</if>
+                <if test= "shandongBatchDelivery.majorNo !=null and shandongBatchDelivery.majorNo != ''"> and major_no = #{shandongBatchDelivery.majorNo}</if>
+                <if test= "shandongBatchDelivery.schoolName !=null and shandongBatchDelivery.schoolName != ''"> and school_name = #{shandongBatchDelivery.schoolName}</if>
+                <if test= "shandongBatchDelivery.schoolNo !=null and shandongBatchDelivery.schoolNo != ''"> and school_no = #{shandongBatchDelivery.schoolNo}</if>
+                <if test= "shandongBatchDelivery.plansNumber !=null and shandongBatchDelivery.plansNumber != ''"> and plans_number = #{shandongBatchDelivery.plansNumber}</if>
+                <if test= "shandongBatchDelivery.pitchPlansNumber !=null and shandongBatchDelivery.pitchPlansNumber != ''"> and pitch_plans_number = #{shandongBatchDelivery.pitchPlansNumber}</if>
+                <if test= "shandongBatchDelivery.castNumber !=null and shandongBatchDelivery.castNumber != ''"> and cast_number = #{shandongBatchDelivery.castNumber}</if>
+                <if test= "shandongBatchDelivery.lowestScore !=null and shandongBatchDelivery.lowestScore != ''"> and lowest_score = #{shandongBatchDelivery.lowestScore}</if>
+                <if test= "shandongBatchDelivery.highestScore !=null and shandongBatchDelivery.highestScore != ''"> and highest_score = #{shandongBatchDelivery.highestScore}</if>
+                <if test= "shandongBatchDelivery.lowestPosition !=null and shandongBatchDelivery.lowestPosition != ''"> and lowest_position = #{shandongBatchDelivery.lowestPosition}</if>
+                <if test= "shandongBatchDelivery.highestPosition !=null and shandongBatchDelivery.highestPosition != ''"> and highest_position = #{shandongBatchDelivery.highestPosition}</if>
+                <if test= "shandongBatchDelivery.year !=null and shandongBatchDelivery.year != ''"> and year = #{shandongBatchDelivery.year}</if>
+        </where>
+    </select>
+
+
+</mapper>

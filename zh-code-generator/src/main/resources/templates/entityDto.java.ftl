@@ -3,7 +3,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 <#if entityLombokModel>
 import lombok.Data;
-import cn.zhenghe.framework.core.base.dto.PageDto;
+import com.liudi.back.utils.PageDto;
 </#if>
 <#list table.importPackages as pkg>
  import ${pkg};

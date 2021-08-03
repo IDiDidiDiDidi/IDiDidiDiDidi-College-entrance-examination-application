@@ -21,37 +21,10 @@ import java.util.Date;
 @Data
 @TableName("school_code")
 public class SchoolCode extends InfoEntity {
-//    @TableField(
-//            fill = FieldFill.INSERT
-//    )
-//    @JsonFormat(
-//            pattern = "yyyy-MM-dd HH:mm:ss",
-//            timezone = "GMT+8"
-//    )
-//    private Date baseCreateTime;
-//    @TableField(
-//            fill = FieldFill.UPDATE
-//    )
-//    @JsonFormat(
-//            pattern = "yyyy-MM-dd HH:mm:ss",
-//            timezone = "GMT+8"
-//    )
-//    private Date baseUpdateTime;
-//    private String creator;
-//    @TableField(
-//            fill = FieldFill.INSERT
-//    )
-//    @TableLogic(
-//            value = "0",
-//            delval = "1"
-//    )
-//    private Boolean isDelete;
-
-
     /**
      * 学校代码
      */
-    @TableField("code_No")
+    @TableField("code_no")
     private String codeNo;
     /**
      * 学校名称
@@ -60,6 +33,6 @@ public class SchoolCode extends InfoEntity {
     /**
      * 备注
      */
-    @TableField("Notes")
+    @TableField("notes")
     private String Notes;
 }
