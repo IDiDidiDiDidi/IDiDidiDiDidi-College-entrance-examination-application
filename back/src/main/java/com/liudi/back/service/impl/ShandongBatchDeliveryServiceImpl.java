@@ -41,4 +41,9 @@ public class ShandongBatchDeliveryServiceImpl implements IShandongBatchDeliveryS
         return Message.success();
     }
 
+    @Override
+    public ShandongBatchDelivery getById(String id) {
+        return shandongBatchDeliveryMapper.selectById(id);
+    }
+
 }

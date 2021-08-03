@@ -19,4 +19,11 @@ public interface IShandongBatchDeliveryService {
     List<ShandongBatchDelivery> findListPage(Page page, ShandongBatchDelivery shandongBatchDelivery);
 
     Message insert(List<ShandongBatchDelivery> shandongBatchDeliveries);
+
+    /**
+     * get by id
+     * @param id
+     * @return
+     */
+    ShandongBatchDelivery getById(String id);
 }
