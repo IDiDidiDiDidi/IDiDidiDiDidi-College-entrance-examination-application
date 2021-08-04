@@ -1,9 +1,13 @@
 package com.liudi.back.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.liudi.back.dto.ShandongBatchDeliverySearchDto;
 import com.liudi.back.entity.ShandongBatchDelivery;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+
 import java.util.List;
+
+import com.liudi.back.vo.SmartSearchVo;
 import org.apache.ibatis.annotations.Param;
 
 /**
@@ -16,5 +20,7 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface ShandongBatchDeliveryMapper extends BaseMapper<ShandongBatchDelivery> {
 
- List<ShandongBatchDelivery> findListPage(Page page ,@Param("shandongBatchDelivery")ShandongBatchDelivery shandongBatchDelivery);
+    List<ShandongBatchDelivery> findListPage(Page page, @Param("searchDto") ShandongBatchDeliverySearchDto searchDto);
+
+    List<SmartSearchVo> smartSearch(Page page, @Param("searchDto") ShandongBatchDeliverySearchDto searchDto);
 }

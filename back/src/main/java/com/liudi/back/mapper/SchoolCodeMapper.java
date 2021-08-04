@@ -22,4 +22,5 @@ public interface SchoolCodeMapper extends BaseMapper<SchoolCode> {
 
  int add(@Param("schoolCode") SchoolCode schoolCode);
 
+ String getNoBySchoolName(@Param("schoolName") String schoolName);
 }

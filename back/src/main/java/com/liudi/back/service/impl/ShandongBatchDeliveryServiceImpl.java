@@ -1,9 +1,13 @@
 package com.liudi.back.service.impl;
 
+import com.liudi.back.dto.ShandongBatchDeliverySearchDto;
 import com.liudi.back.entity.ShandongBatchDelivery;
+import com.liudi.back.mapper.SchoolCodeMapper;
 import com.liudi.back.mapper.ShandongBatchDeliveryMapper;
 import com.liudi.back.service.IShandongBatchDeliveryService;
 import com.liudi.back.utils.Message;
+import com.liudi.back.vo.SmartSearchVo;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -20,13 +24,24 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
  * @since 2021-08-03
  */
 @Service
+@Slf4j
 public class ShandongBatchDeliveryServiceImpl implements IShandongBatchDeliveryService {
     @Autowired
     private ShandongBatchDeliveryMapper shandongBatchDeliveryMapper;
 
+    @Autowired
+    private SchoolCodeMapper schoolCodeMapper;
+
     @Override
-    public List<ShandongBatchDelivery> findListPage(Page page, ShandongBatchDelivery shandongBatchDelivery) {
-        return shandongBatchDeliveryMapper.findListPage(page, shandongBatchDelivery);
+    public List<SmartSearchVo> findListPage(Page page, ShandongBatchDeliverySearchDto searchDto) {
+
+        // 1. - 输入成绩， 给出最低录取分数上下50分的所有学校 + 专业
+        // 2. - 输入排名，给出上下5万名的所有学校 + 专业
+        List<SmartSearchVo> list = shandongBatchDeliveryMapper.smartSearch(page, searchDto);
+
+        return list;
+
+//        return shandongBatchDeliveryMapper.findListPage(page, searchDto);
     }
 
     @Override
@@ -35,6 +50,10 @@ public class ShandongBatchDeliveryServiceImpl implements IShandongBatchDeliveryS
             return Message.fail("the excel is null");
         }
         shandongBatchDeliveries.forEach(e -> {
+            // 1.add school_no
+            String schoolName = e.getSchoolName().substring(4);
+            String codeNo = schoolCodeMapper.getNoBySchoolName(schoolName);
+
             shandongBatchDeliveryMapper.insert(e);
         });
 
@@ -44,6 +63,12 @@ public class ShandongBatchDeliveryServiceImpl implements IShandongBatchDeliveryS
     @Override
     public ShandongBatchDelivery getById(String id) {
         return shandongBatchDeliveryMapper.selectById(id);
+    }
+
+    public static void main(String[] args) {
+        String name = "H422山东大学威海分校";
+
+        System.out.println(name.substring(4));
     }
 
 }

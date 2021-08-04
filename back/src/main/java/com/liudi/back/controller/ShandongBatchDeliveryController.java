@@ -1,8 +1,10 @@
 package com.liudi.back.controller;
 
 import com.liudi.back.core.base.WebController;
+import com.liudi.back.dto.ShandongBatchDeliverySearchDto;
 import com.liudi.back.utils.BeanCopyUtil;
 import com.liudi.back.utils.Message;
+import com.liudi.back.vo.SmartSearchVo;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -54,13 +56,13 @@ public class ShandongBatchDeliveryController extends WebController {
 
     @ApiOperation(value = "自定义查询列表-分页")
     @GetMapping("findShandongBatchDeliveryListPage")
-    public Message findShandongBatchDeliveryListPage(ShandongBatchDeliveryDto shandongBatchDeliveryDto) {
+    public Message findShandongBatchDeliveryListPage(ShandongBatchDeliverySearchDto searchDto) {
         try {
-            Integer pageSize = shandongBatchDeliveryDto.getPageSize();
-            Integer pageNum = shandongBatchDeliveryDto.getPageNum();
+            Integer pageSize = searchDto.getPageSize();
+            Integer pageNum = searchDto.getPageNum();
             Page<ShandongBatchDelivery> page = startPage(pageNum, pageSize);
-            ShandongBatchDelivery shandongBatchDelivery = BeanCopyUtil.convertBean(shandongBatchDeliveryDto, ShandongBatchDelivery.class);
-            List<ShandongBatchDelivery> list = shandongBatchDeliveryService.findListPage(page, shandongBatchDelivery);
+//            ShandongBatchDelivery shandongBatchDelivery = BeanCopyUtil.convertBean(searchDto, ShandongBatchDelivery.class);
+            List<SmartSearchVo> list = shandongBatchDeliveryService.findListPage(page, searchDto);
             return Message.success(getPageResult(list, pageNum, pageSize, (int) page.getTotal()));
         } catch (Exception e) {
             logger.error("查询异常：===》" + e);

@@ -29,30 +29,49 @@
     </sql>
 
 
-    <select id="findListPage" resultMap="BaseResultMap" parameterType="com.liudi.back.entity.ShandongBatchDelivery">
+    <select id="findListPage" resultMap="BaseResultMap" parameterType="com.liudi.back.dto.ShandongBatchDeliverySearchDto">
         SELECT
         <include refid="Base_Column_List" />
         FROM shandong_batch_delivery
         <where>
-                <if test= "shandongBatchDelivery.baseId !=null and shandongBatchDelivery.baseId != ''"> and base_id = #{shandongBatchDelivery.baseId}</if>
-                <if test= "shandongBatchDelivery.baseCreateTime !=null "> and base_create_time =  #{shandongBatchDelivery.baseCreateTime} </if>
-                <if test= "shandongBatchDelivery.baseUpdateTime !=null "> and base_update_time =  #{shandongBatchDelivery.baseUpdateTime} </if>
-                <if test= "shandongBatchDelivery.creator !=null and shandongBatchDelivery.creator != ''"> and creator = #{shandongBatchDelivery.creator}</if>
-                <if test= "shandongBatchDelivery.isDelete !=null "> and is_delete =  #{shandongBatchDelivery.isDelete} </if>
-                <if test= "shandongBatchDelivery.major !=null and shandongBatchDelivery.major != ''"> and major = #{shandongBatchDelivery.major}</if>
-                <if test= "shandongBatchDelivery.majorNo !=null and shandongBatchDelivery.majorNo != ''"> and major_no = #{shandongBatchDelivery.majorNo}</if>
-                <if test= "shandongBatchDelivery.schoolName !=null and shandongBatchDelivery.schoolName != ''"> and school_name = #{shandongBatchDelivery.schoolName}</if>
-                <if test= "shandongBatchDelivery.schoolNo !=null and shandongBatchDelivery.schoolNo != ''"> and school_no = #{shandongBatchDelivery.schoolNo}</if>
-                <if test= "shandongBatchDelivery.plansNumber !=null and shandongBatchDelivery.plansNumber != ''"> and plans_number = #{shandongBatchDelivery.plansNumber}</if>
-                <if test= "shandongBatchDelivery.pitchPlansNumber !=null and shandongBatchDelivery.pitchPlansNumber != ''"> and pitch_plans_number = #{shandongBatchDelivery.pitchPlansNumber}</if>
-                <if test= "shandongBatchDelivery.castNumber !=null and shandongBatchDelivery.castNumber != ''"> and cast_number = #{shandongBatchDelivery.castNumber}</if>
-                <if test= "shandongBatchDelivery.lowestScore !=null and shandongBatchDelivery.lowestScore != ''"> and lowest_score = #{shandongBatchDelivery.lowestScore}</if>
-                <if test= "shandongBatchDelivery.highestScore !=null and shandongBatchDelivery.highestScore != ''"> and highest_score = #{shandongBatchDelivery.highestScore}</if>
-                <if test= "shandongBatchDelivery.lowestPosition !=null and shandongBatchDelivery.lowestPosition != ''"> and lowest_position = #{shandongBatchDelivery.lowestPosition}</if>
-                <if test= "shandongBatchDelivery.highestPosition !=null and shandongBatchDelivery.highestPosition != ''"> and highest_position = #{shandongBatchDelivery.highestPosition}</if>
-                <if test= "shandongBatchDelivery.year !=null and shandongBatchDelivery.year != ''"> and year = #{shandongBatchDelivery.year}</if>
+<!--                <if test= "searchDto.baseId !=null and searchDto.baseId != ''"> and base_id = #{searchDto.baseId}</if>-->
+<!--                <if test= "searchDto.baseCreateTime !=null "> and base_create_time =  #{searchDto.baseCreateTime} </if>-->
+<!--                <if test= "searchDto.baseUpdateTime !=null "> and base_update_time =  #{searchDto.baseUpdateTime} </if>-->
+<!--                <if test= "searchDto.creator !=null and searchDto.creator != ''"> and creator = #{searchDto.creator}</if>-->
+<!--                <if test= "searchDto.isDelete !=null "> and is_delete =  #{searchDto.isDelete} </if>-->
+                <if test= "searchDto.major !=null and searchDto.major != ''"> and major = #{searchDto.major}</if>
+                <if test= "searchDto.majorNo !=null and searchDto.majorNo != ''"> and major_no = #{searchDto.majorNo}</if>
+                <if test= "searchDto.schoolName !=null and searchDto.schoolName != ''"> and school_name = #{searchDto.schoolName}</if>
+                <if test= "searchDto.schoolNo !=null and searchDto.schoolNo != ''"> and school_no = #{searchDto.schoolNo}</if>
+                <if test= "searchDto.plansNumber !=null and searchDto.plansNumber != ''"> and plans_number = #{searchDto.plansNumber}</if>
+                <if test= "searchDto.pitchPlansNumber !=null and searchDto.pitchPlansNumber != ''"> and pitch_plans_number = #{searchDto.pitchPlansNumber}</if>
+                <if test= "searchDto.castNumber !=null and searchDto.castNumber != ''"> and cast_number = #{searchDto.castNumber}</if>
+                <if test= "searchDto.lowestScore !=null and searchDto.lowestScore != ''"> and lowest_score = #{searchDto.lowestScore}</if>
+                <if test= "searchDto.highestScore !=null and searchDto.highestScore != ''"> and highest_score = #{searchDto.highestScore}</if>
+                <if test= "searchDto.lowestPosition !=null and searchDto.lowestPosition != ''"> and lowest_position = #{searchDto.lowestPosition}</if>
+                <if test= "searchDto.highestPosition !=null and searchDto.highestPosition != ''"> and highest_position = #{searchDto.highestPosition}</if>
+                <if test= "searchDto.year !=null and searchDto.year != ''"> and year = #{searchDto.year}</if>
         </where>
     </select>
+
+    <select id="smartSearch" resultType="com.liudi.back.vo.SmartSearchVo">
+        SELECT
+        school_name,
+
+        count( * ) as count,
+        lowest_score,
+        lowest_position
+        FROM
+        shandong_batch_delivery
+        <where>
+            is_delete = 0
+            and lowest_score &gt; (#{searchDto.score} - #{searchDto.scoreRange})
+            and lowest_score &lt; (#{searchDto.score} + #{searchDto.scoreRange})
+            <if test= "searchDto.year !=null and searchDto.year != ''"> and year = #{searchDto.year}</if>
+        </where>
+        GROUP BY school_name
+    </select>
+
 
 
 </mapper>
