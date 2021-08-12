@@ -33,7 +33,8 @@ import java.util.List;
  * @since 2021-08-03
  */
 @RestController
-@RequestMapping("shandongBatchDelivery")
+@RequestMapping("search")
+@CrossOrigin
 @Api(tags = "shandongBatchDelivery", description = "shandongBatchDelivery")
 public class ShandongBatchDeliveryController extends WebController {
     protected final Logger logger = LoggerFactory.getLogger(ShandongBatchDeliveryController.class);
@@ -55,7 +56,7 @@ public class ShandongBatchDeliveryController extends WebController {
     }
 
     @ApiOperation(value = "自定义查询列表-分页")
-    @GetMapping("findShandongBatchDeliveryListPage")
+    @GetMapping("list")
     public Message findShandongBatchDeliveryListPage(ShandongBatchDeliverySearchDto searchDto) {
         try {
             Integer pageSize = searchDto.getPageSize();

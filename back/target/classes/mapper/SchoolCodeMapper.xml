@@ -41,5 +41,14 @@
         ('cab2a10abe034e7283fd52860a2334f8aaa', '2021-08-02 14:26:36', 'ld', '10001', '北京大学', '北京医科大学并入')
     </insert>
 
+    <select id="getNoBySchoolName" resultType="java.lang.String">
+        SELECT
+        code_no
+        FROM
+        school_code
+        WHERE
+        school_name = #{schoolName};
+    </select>
+
 
 </mapper>
