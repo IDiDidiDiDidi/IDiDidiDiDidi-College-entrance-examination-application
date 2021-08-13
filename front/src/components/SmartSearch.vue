@@ -13,23 +13,43 @@
             <el-card class="box-card">
               <!-- 搜索 -->
               <div class="search_div">
-                <el-row :gutter="20">
-                  <!-- gutter 列与列之间的间隙 -->
-                  <el-col :span="6"><div class="grid-content"></div></el-col>
-                  <el-col :span="7">
-                    <el-input
-                      placeholder="请输入分数"
-                      v-model="queryInfo.score"
-                      clearable
-                    >
-                    </el-input>
-                  </el-col>
-                  <el-col :span="4">
-                    <el-button type="primary" @click="getSearch"
-                      >搜索
-                    </el-button>
-                  </el-col>
-                </el-row>
+                <el-form class="search_form">
+                  <el-row :gutter="20">
+                    <!-- gutter 列与列之间的间隙 -->
+                    <el-col :span="6">
+                      <div class="grid-content"></div>
+                    </el-col>
+                    <el-col :span="4">
+                        <el-input
+                          placeholder="请输入分数"
+                          v-model="queryInfo.score"
+                          clearable
+                          class="score_el_input"
+                        >
+                        </el-input>
+                    </el-col>
+                    <el-col :span="3">
+                      <el-select
+                        v-model="queryInfo.scoreRange"
+                        placeholder="请选择"
+                      >
+                        <el-option
+                          v-for="item in ipt2List"
+                          :key="item.value"
+                          :label="item.label"
+                          :value="item.value"
+                        >
+                        </el-option>
+                      </el-select>
+                    </el-col>
+
+                    <el-col :span="4">
+                      <el-button type="primary" @click="getSearch"
+                        >搜索
+                      </el-button>
+                    </el-col>
+                  </el-row>
+                </el-form>
               </div>
               <div class="table_div">
                 <!-- 下方excel 表格 -->
@@ -96,7 +116,7 @@ export default {
       //   查询参数
       queryInfo: {
         score: 610,
-        scoreRange: 10,
+        scoreRange: 5,
         // 当前页码
         pageNum: 1,
         // 当前每页显示多少条数据
@@ -104,6 +124,12 @@ export default {
       },
       scoreList: [],
       total: 0,
+      ipt2List: [
+        { label: "5", value: "5" },
+        { label: "10", value: "10" },
+        { label: "20", value: "20" },
+        { label: "30", value: "30" },
+      ],
     };
   },
   created() {
