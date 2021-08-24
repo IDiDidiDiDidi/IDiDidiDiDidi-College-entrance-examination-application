@@ -13,39 +13,35 @@
             <el-card class="box-card">
               <!-- 搜索 -->
               <div class="search_div">
-                <el-form class="search_form">
-                  <el-row :gutter="20">
-                    <!-- gutter 列与列之间的间隙 -->
-                    <el-col :span="6">
-                      <div class="grid-content"></div>
-                    </el-col>
+                <!-- 搜索框 -->
+                <el-form ref="form" :model="queryInfo" label-width="80px">
+                  <el-row>
                     <el-col :span="4">
-                        <el-input
-                          placeholder="请输入分数"
-                          v-model="queryInfo.score"
-                          clearable
-                          class="score_el_input"
-                        >
-                        </el-input>
-                    </el-col>
-                    <el-col :span="3">
-                      <el-select
-                        v-model="queryInfo.scoreRange"
-                        placeholder="请选择"
-                      >
-                        <el-option
-                          v-for="item in ipt2List"
-                          :key="item.value"
-                          :label="item.label"
-                          :value="item.value"
-                        >
-                        </el-option>
-                      </el-select>
+                      <el-form-item label="分数">
+                        <el-input v-model="queryInfo.score"></el-input>
+                      </el-form-item>
                     </el-col>
 
                     <el-col :span="4">
-                      <el-button type="primary" @click="getSearch"
-                        >搜索
+                      <el-form-item label="分数范围">
+                        <el-input v-model="queryInfo.scoreRange"></el-input>
+                      </el-form-item>
+                    </el-col>
+
+                    <el-col :span="4">
+                      <el-form-item label="专业">
+                        <el-input v-model="queryInfo.score"></el-input>
+                      </el-form-item>
+                    </el-col>
+
+                    <el-col :span="4">
+                      <el-form-item label="搜索方式">
+                        <el-input v-model="queryInfo.score"></el-input>
+                      </el-form-item>
+                    </el-col>
+                    <el-col :span="4">
+                      <el-button type="primary" @click="getSearch">
+                        搜索
                       </el-button>
                     </el-col>
                   </el-row>

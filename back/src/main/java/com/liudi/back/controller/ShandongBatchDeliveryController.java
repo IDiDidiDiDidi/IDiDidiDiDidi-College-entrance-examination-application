@@ -62,7 +62,6 @@ public class ShandongBatchDeliveryController extends WebController {
             Integer pageSize = searchDto.getPageSize();
             Integer pageNum = searchDto.getPageNum();
             Page<ShandongBatchDelivery> page = startPage(pageNum, pageSize);
-//            ShandongBatchDelivery shandongBatchDelivery = BeanCopyUtil.convertBean(searchDto, ShandongBatchDelivery.class);
             List<SmartSearchVo> list = shandongBatchDeliveryService.findListPage(page, searchDto);
             return Message.success(getPageResult(list, pageNum, pageSize, (int) page.getTotal()));
         } catch (Exception e) {

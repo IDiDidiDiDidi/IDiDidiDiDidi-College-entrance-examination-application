@@ -57,7 +57,6 @@
     <select id="smartSearch" resultType="com.liudi.back.vo.SmartSearchVo">
         SELECT
         school_name,
-
         count( * ) as count,
         lowest_score,
         lowest_position
