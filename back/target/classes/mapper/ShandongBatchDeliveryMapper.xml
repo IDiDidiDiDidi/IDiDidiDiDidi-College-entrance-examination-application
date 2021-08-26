@@ -71,6 +71,23 @@
         GROUP BY school_name
     </select>
 
+    <select id="getSchoolCode" resultType="com.liudi.back.vo.SchoolNameCodeVo">
+        SELECT
+        LEFT( sbd.school_name, 4 )as schoolCode, sbd.school_name as schoolName
+        FROM
+        shandong_batch_delivery sbd
+        GROUP BY
+        sbd.school_name
+        ORDER BY schoolCode
+
+    </select>
+
+    <update id="updateSDSchoolCode">
+        UPDATE shandong_batch_delivery
+        SET school_no = #{schoolCode}
+        WHERE
+        school_name = #{schoolName}
+    </update>
 
 
 </mapper>

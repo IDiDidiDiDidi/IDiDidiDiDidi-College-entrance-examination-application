@@ -34,4 +34,11 @@ public interface IShandongBatchDeliveryService {
      * @return
      */
     ShandongBatchDelivery getById(String id);
+
+    /**
+     * 更新地图
+     * @return
+     */
+    Message updateMap();
+
 }

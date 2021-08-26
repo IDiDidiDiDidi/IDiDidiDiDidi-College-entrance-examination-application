@@ -32,24 +32,16 @@ public class CollegeAddressImpl {
      */
     final static String LONGITUDE_TO_ADDRESS_URL = "http://api.map.baidu.com/reverse_geocoding/v3/?output=json&coordtype=BD09&pois=1";
 
-
-    /**
-     * 通过百度地图 api 获取各高校地址
-     */
-    public void getCollegeAddress() {
-
-    }
-
-    public static void main(String[] args) {
-        BaiduMapLngLatBean locationBean = addressTolongitudea("济宁师范专科学校");
-//        Object result = map.get("result");
-        System.out.println("======= " + JSON.toJSONString(locationBean));
-        Location location = locationBean.getLocation();
-
-
-        BaiduMapAddressBean baiduMapAddressBean = longitudeToAddress(locationBean.getLocation().getLat(), locationBean.getLocation().getLng());
-        System.out.println("======= " + JSON.toJSONString(baiduMapAddressBean));
-    }
+//
+//    public static void main(String[] args) {
+//        BaiduMapLngLatBean locationBean = addressTolongitudea("济宁师范专科学校");
+////        Object result = map.get("result");
+//        System.out.println("======= " + JSON.toJSONString(locationBean));
+//        Location location = locationBean.getLocation();
+//
+//        BaiduMapAddressBean baiduMapAddressBean = longitudeToAddress(locationBean.getLocation().getLat(), locationBean.getLocation().getLng());
+//        System.out.println("======= " + JSON.toJSONString(baiduMapAddressBean));
+//    }
 
 
     /**
@@ -58,7 +50,7 @@ public class CollegeAddressImpl {
      * @param address 详细的位置信息
      * @return 经纬度
      */
-    public static BaiduMapLngLatBean addressTolongitudea(String address) {
+    public BaiduMapLngLatBean addressTolongitudea(String address) {
         if (StringUtils.isBlank(address)) {
             return null;
         }
@@ -88,7 +80,7 @@ public class CollegeAddressImpl {
      * @param lng 经度
      * @return
      */
-    public static BaiduMapAddressBean longitudeToAddress(String lat, String lng) {
+    public BaiduMapAddressBean longitudeToAddress(String lat, String lng) {
         String url = LONGITUDE_TO_ADDRESS_URL + "&ak=" + AK + "&location=" + lat + "," + lng;
         log.info("请求url:" + url);
         HttpClient client = HttpClients.createDefault(); // 创建默认http连接

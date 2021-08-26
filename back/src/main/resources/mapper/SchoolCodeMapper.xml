@@ -50,5 +50,12 @@
         school_name = #{schoolName};
     </select>
 
+    <update id="updateSchoolCode">
+        UPDATE school_code
+        SET school_no = #{schoolCode}
+        WHERE
+        school_name LIKE CONCAT( '%', sc.school_name, '%' )
+    </update>
+
 
 </mapper>

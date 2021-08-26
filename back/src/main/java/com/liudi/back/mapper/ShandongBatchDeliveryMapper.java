@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import java.util.List;
 
+import com.liudi.back.vo.SchoolNameCodeVo;
 import com.liudi.back.vo.SmartSearchVo;
 import org.apache.ibatis.annotations.Param;
 
@@ -23,4 +24,12 @@ public interface ShandongBatchDeliveryMapper extends BaseMapper<ShandongBatchDel
     List<ShandongBatchDelivery> findListPage(Page page, @Param("searchDto") ShandongBatchDeliverySearchDto searchDto);
 
     List<SmartSearchVo> smartSearch(Page page, @Param("searchDto") ShandongBatchDeliverySearchDto searchDto);
+
+    /**
+     * 求学校编码
+     * @return 求学校编码
+     */
+    List<SchoolNameCodeVo> getSchoolCode();
+
+    Boolean updateSDSchoolCode(@Param("schoolCode") String schoolCode, @Param("schoolName") String schoolName);
 }

@@ -5,6 +5,7 @@ import com.liudi.back.entity.ShandongBatchDelivery;
 import com.liudi.back.mapper.SchoolCodeMapper;
 import com.liudi.back.mapper.ShandongBatchDeliveryMapper;
 import com.liudi.back.service.IShandongBatchDeliveryService;
+import com.liudi.back.utils.BaiduMapUtils;
 import com.liudi.back.utils.Message;
 import com.liudi.back.vo.SmartSearchVo;
 import lombok.extern.slf4j.Slf4j;
@@ -46,7 +47,7 @@ public class ShandongBatchDeliveryServiceImpl implements IShandongBatchDeliveryS
 
     @Override
     public Message insert(List<ShandongBatchDelivery> shandongBatchDeliveries) {
-        if(shandongBatchDeliveries == null || shandongBatchDeliveries.isEmpty()) {
+        if (shandongBatchDeliveries == null || shandongBatchDeliveries.isEmpty()) {
             return Message.fail("the excel is null");
         }
         shandongBatchDeliveries.forEach(e -> {
@@ -63,6 +64,17 @@ public class ShandongBatchDeliveryServiceImpl implements IShandongBatchDeliveryS
     @Override
     public ShandongBatchDelivery getById(String id) {
         return shandongBatchDeliveryMapper.selectById(id);
+    }
+
+    @Override
+    public Message updateMap() {
+        // 所有的学校，
+
+//        BaiduMapUtils.addressTolongitudea();
+
+
+
+        return null;
     }
 
     public static void main(String[] args) {
