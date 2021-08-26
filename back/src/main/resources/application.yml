@@ -45,4 +45,11 @@ swagger:
 logging:
   level:
     com.liudi.back: DEBUG
+    io.swagger.models.parameters.AbstractSerializableParameter: error
 
+task:
+  queue:
+    corePoolSize: 10
+    maxPoolSize: 30
+    queueCapacity: 8
+    keepAlive: 60

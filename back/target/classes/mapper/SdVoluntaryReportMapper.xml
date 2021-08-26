@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liudi.back.mapper.SdVoluntaryReportMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.liudi.back.entity.SdVoluntaryReport">
+        <id column="base_id" property="baseId"/>
+        <result column="base_create_time" property="baseCreateTime"/>
+        <result column="base_update_time" property="baseUpdateTime"/>
+        <result column="creator" property="creator"/>
+        <result column="is_delete" property="isDelete"/>
+        <result column="major" property="major"/>
+        <result column="major_no" property="majorNo"/>
+        <result column="school_name" property="schoolName"/>
+        <result column="school_no" property="schoolNo"/>
+        <result column="plans_number" property="plansNumber"/>
+        <result column="pitch_plans_number" property="pitchPlansNumber"/>
+        <result column="cast_number" property="castNumber"/>
+        <result column="lowest_score" property="lowestScore"/>
+        <result column="highest_score" property="highestScore"/>
+        <result column="lowest_position" property="lowestPosition"/>
+        <result column="highest_position" property="highestPosition"/>
+        <result column="year" property="year"/>
+        <result column="batch" property="batch"/>
+        <result column="level" property="level"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        base_id, base_create_time, base_update_time, creator, is_delete, major, major_no, school_name, school_no, plans_number, pitch_plans_number, cast_number, lowest_score, highest_score, lowest_position, highest_position, year, batch, level
+    </sql>
+
+
+    <select id="findListPage" resultMap="BaseResultMap" parameterType="com.liudi.back.entity.SdVoluntaryReport">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM sd_voluntary_report
+        <where>
+                <if test= "sdVoluntaryReport.baseId !=null and sdVoluntaryReport.baseId != ''"> and base_id = #{sdVoluntaryReport.baseId}</if>
+                <if test= "sdVoluntaryReport.baseCreateTime !=null "> and base_create_time =  #{sdVoluntaryReport.baseCreateTime} </if>
+                <if test= "sdVoluntaryReport.baseUpdateTime !=null "> and base_update_time =  #{sdVoluntaryReport.baseUpdateTime} </if>
+                <if test= "sdVoluntaryReport.creator !=null and sdVoluntaryReport.creator != ''"> and creator = #{sdVoluntaryReport.creator}</if>
+                <if test= "sdVoluntaryReport.isDelete !=null "> and is_delete =  #{sdVoluntaryReport.isDelete} </if>
+                <if test= "sdVoluntaryReport.major !=null and sdVoluntaryReport.major != ''"> and major = #{sdVoluntaryReport.major}</if>
+                <if test= "sdVoluntaryReport.majorNo !=null and sdVoluntaryReport.majorNo != ''"> and major_no = #{sdVoluntaryReport.majorNo}</if>
+                <if test= "sdVoluntaryReport.schoolName !=null and sdVoluntaryReport.schoolName != ''"> and school_name = #{sdVoluntaryReport.schoolName}</if>
+                <if test= "sdVoluntaryReport.schoolNo !=null and sdVoluntaryReport.schoolNo != ''"> and school_no = #{sdVoluntaryReport.schoolNo}</if>
+                <if test= "sdVoluntaryReport.plansNumber !=null "> and plans_number =  #{sdVoluntaryReport.plansNumber} </if>
+                <if test= "sdVoluntaryReport.pitchPlansNumber !=null "> and pitch_plans_number =  #{sdVoluntaryReport.pitchPlansNumber} </if>
+                <if test= "sdVoluntaryReport.castNumber !=null "> and cast_number =  #{sdVoluntaryReport.castNumber} </if>
+                <if test= "sdVoluntaryReport.lowestScore !=null "> and lowest_score =  #{sdVoluntaryReport.lowestScore} </if>
+                <if test= "sdVoluntaryReport.highestScore !=null "> and highest_score =  #{sdVoluntaryReport.highestScore} </if>
+                <if test= "sdVoluntaryReport.lowestPosition !=null "> and lowest_position =  #{sdVoluntaryReport.lowestPosition} </if>
+                <if test= "sdVoluntaryReport.highestPosition !=null "> and highest_position =  #{sdVoluntaryReport.highestPosition} </if>
+                <if test= "sdVoluntaryReport.year !=null and sdVoluntaryReport.year != ''"> and year = #{sdVoluntaryReport.year}</if>
+                <if test= "sdVoluntaryReport.batch !=null "> and batch =  #{sdVoluntaryReport.batch} </if>
+                <if test= "sdVoluntaryReport.level !=null and sdVoluntaryReport.level != ''"> and level = #{sdVoluntaryReport.level}</if>
+        </where>
+    </select>
+
+    <select id="groupBySchoolName" resultType="com.liudi.back.vo.SdVoluntaryReportVo">
+        SELECT
+        school_no as schoolNo,
+        school_name as schoolName
+        FROM
+        sd_voluntary_report
+        GROUP BY
+        school_name
+    </select>
+
+
+</mapper>

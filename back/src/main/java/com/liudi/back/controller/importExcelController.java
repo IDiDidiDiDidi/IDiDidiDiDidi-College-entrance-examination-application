@@ -1,10 +1,13 @@
 package com.liudi.back.controller;
 
+import com.liudi.back.entity.SdVoluntaryReport;
 import com.liudi.back.entity.ShandongBatchDelivery;
 import com.liudi.back.service.IShandongBatchDeliveryService;
 import com.liudi.back.utils.BeanCopyUtil;
 import com.liudi.back.utils.ImportExcelUtil;
 import com.liudi.back.utils.Message;
+import com.liudi.back.vo.ImportSdExcelVo;
+import com.liudi.back.vo.SdVoluntaryReportVo;
 import com.liudi.back.vo.ShandongBatchDeliveryVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -31,12 +34,12 @@ public class importExcelController {
 
     @ApiOperation(value = "导入 ")
     @PostMapping("importEx")
-    public Message importEx(@RequestPart(value = "file") MultipartFile file) {
+    public Message importEx(@RequestPart(value = "file") MultipartFile file, int year, Integer batch) throws Exception {
         try {
-            List<Map<String, Object>> maps = ImportExcelUtil.importExcelOneSheet(file, ShandongBatchDeliveryVo.class, false);
+            List<Map<String, Object>> maps = ImportExcelUtil.importExcelOneSheet(file, ImportSdExcelVo.class, false);
 
-            List<ShandongBatchDelivery> shandongBatchDeliveries = BeanCopyUtil.convertList(maps, ShandongBatchDelivery.class);
-            return shandongBatchDeliveryService.insert(shandongBatchDeliveries);
+            List<SdVoluntaryReport> beans = BeanCopyUtil.convertList(maps, SdVoluntaryReport.class);
+            return shandongBatchDeliveryService.insert(beans, year, batch);
         } catch (Exception e) {
             logger.error("查询异常：===》" + e);
             return Message.fail(e.getMessage());

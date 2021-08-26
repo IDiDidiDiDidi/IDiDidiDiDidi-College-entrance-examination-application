@@ -1,6 +1,7 @@
 package com.liudi.back.service;
 
 import com.liudi.back.dto.ShandongBatchDeliverySearchDto;
+import com.liudi.back.entity.SdVoluntaryReport;
 import com.liudi.back.entity.ShandongBatchDelivery;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.liudi.back.utils.Message;
@@ -26,7 +27,7 @@ public interface IShandongBatchDeliveryService {
      */
     List<SmartSearchVo> findListPage(Page page, ShandongBatchDeliverySearchDto shandongBatchDelivery);
 
-    Message insert(List<ShandongBatchDelivery> shandongBatchDeliveries);
+    Message insert(List<SdVoluntaryReport> shandongBatchDeliveries, int year, Integer batch);
 
     /**
      * get by id

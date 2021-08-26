@@ -1,14 +1,17 @@
 package com.liudi.back.service.impl;
 
+import com.liudi.back.aspect.AsyThread;
 import com.liudi.back.dto.ShandongBatchDeliverySearchDto;
+import com.liudi.back.entity.SdVoluntaryReport;
 import com.liudi.back.entity.ShandongBatchDelivery;
 import com.liudi.back.mapper.SchoolCodeMapper;
+import com.liudi.back.mapper.SdVoluntaryReportMapper;
 import com.liudi.back.mapper.ShandongBatchDeliveryMapper;
 import com.liudi.back.service.IShandongBatchDeliveryService;
-import com.liudi.back.utils.BaiduMapUtils;
 import com.liudi.back.utils.Message;
 import com.liudi.back.vo.SmartSearchVo;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -33,32 +36,30 @@ public class ShandongBatchDeliveryServiceImpl implements IShandongBatchDeliveryS
     @Autowired
     private SchoolCodeMapper schoolCodeMapper;
 
+    @Autowired
+    private SdVoluntaryReportMapper sdVoluntaryReportMapper;
+
+    @Autowired
+    ThreadService threadService;
+
     @Override
     public List<SmartSearchVo> findListPage(Page page, ShandongBatchDeliverySearchDto searchDto) {
 
         // 1. - 输入成绩， 给出最低录取分数上下50分的所有学校 + 专业
         // 2. - 输入排名，给出上下5万名的所有学校 + 专业
         List<SmartSearchVo> list = shandongBatchDeliveryMapper.smartSearch(page, searchDto);
-
         return list;
-
-//        return shandongBatchDeliveryMapper.findListPage(page, searchDto);
     }
 
+    @Async
     @Override
-    public Message insert(List<ShandongBatchDelivery> shandongBatchDeliveries) {
+    public Message insert(List<SdVoluntaryReport> shandongBatchDeliveries, int year, Integer batch) {
         if (shandongBatchDeliveries == null || shandongBatchDeliveries.isEmpty()) {
             return Message.fail("the excel is null");
         }
-        shandongBatchDeliveries.forEach(e -> {
-            // 1.add school_no
-            String schoolName = e.getSchoolName().substring(4);
-            String codeNo = schoolCodeMapper.getNoBySchoolName(schoolName);
-
-            shandongBatchDeliveryMapper.insert(e);
-        });
-
-        return Message.success();
+        threadService.insertSdVoluntaryReportMapper(shandongBatchDeliveries, year, batch);
+        log.info("=========== 正在进行后台导入");
+        return Message.success("正在进行后台导入");
     }
 
     @Override
@@ -68,19 +69,10 @@ public class ShandongBatchDeliveryServiceImpl implements IShandongBatchDeliveryS
 
     @Override
     public Message updateMap() {
-        // 所有的学校，
-
-//        BaiduMapUtils.addressTolongitudea();
-
 
 
         return null;
     }
 
-    public static void main(String[] args) {
-        String name = "H422山东大学威海分校";
-
-        System.out.println(name.substring(4));
-    }
 
 }

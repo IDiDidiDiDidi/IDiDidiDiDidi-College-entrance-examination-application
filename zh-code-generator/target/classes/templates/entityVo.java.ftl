@@ -6,7 +6,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 <#if entityLombokModel>
 import lombok.Data;
-import cn.zhenghe.framework.core.base.vo.BaseVo;
+import com.liudi.back.core.base.BaseVo;
 </#if>
 
 /**
