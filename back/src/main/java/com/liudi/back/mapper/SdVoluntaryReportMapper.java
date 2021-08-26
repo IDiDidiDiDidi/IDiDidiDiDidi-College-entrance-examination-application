@@ -1,12 +1,12 @@
 package com.liudi.back.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.liudi.back.dto.SdVoluntaryReportDto;
 import com.liudi.back.entity.SdVoluntaryReport;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import java.util.List;
 
-import com.liudi.back.vo.SchoolAddressVo;
 import com.liudi.back.vo.SdVoluntaryReportVo;
 import org.apache.ibatis.annotations.Param;
 
@@ -20,7 +20,7 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface SdVoluntaryReportMapper extends BaseMapper<SdVoluntaryReport> {
 
-    List<SdVoluntaryReport> findListPage(Page page, @Param("sdVoluntaryReport") SdVoluntaryReport sdVoluntaryReport);
+    List<SdVoluntaryReport> findListPage(Page page, @Param("sdVoluntaryReport") SdVoluntaryReportDto sdVoluntaryReport);
 
     /**
      * 所有学校的name + code

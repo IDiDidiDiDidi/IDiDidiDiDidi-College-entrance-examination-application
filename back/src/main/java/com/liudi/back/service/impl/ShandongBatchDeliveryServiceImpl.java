@@ -1,6 +1,5 @@
 package com.liudi.back.service.impl;
 
-import com.liudi.back.aspect.AsyThread;
 import com.liudi.back.dto.ShandongBatchDeliverySearchDto;
 import com.liudi.back.entity.SdVoluntaryReport;
 import com.liudi.back.entity.ShandongBatchDelivery;
@@ -66,13 +65,5 @@ public class ShandongBatchDeliveryServiceImpl implements IShandongBatchDeliveryS
     public ShandongBatchDelivery getById(String id) {
         return shandongBatchDeliveryMapper.selectById(id);
     }
-
-    @Override
-    public Message updateMap() {
-
-
-        return null;
-    }
-
 
 }

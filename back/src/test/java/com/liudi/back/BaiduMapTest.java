@@ -1,15 +1,12 @@
 package com.liudi.back;
 
 import com.alibaba.fastjson.JSON;
-import com.liudi.back.aspect.AsyncTaskService;
 import com.liudi.back.entity.BaiduMapAddressBean;
 import com.liudi.back.entity.BaiduMapLngLatBean;
 import com.liudi.back.entity.Location;
 import com.liudi.back.mapper.SdVoluntaryReportMapper;
 import com.liudi.back.service.ISchoolAddressService;
-import com.liudi.back.service.impl.SchoolAddressServiceImpl;
 import com.liudi.back.utils.BaiduMapUtils;
-import com.liudi.back.vo.SchoolAddressVo;
 import com.liudi.back.vo.SdVoluntaryReportVo;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

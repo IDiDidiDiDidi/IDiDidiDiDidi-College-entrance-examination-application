@@ -15,10 +15,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.*;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.liudi.back.entity.ShandongBatchDelivery;
-import com.liudi.back.dto.ShandongBatchDeliveryDto;
 import com.liudi.back.service.IShandongBatchDeliveryService;
 
 import java.util.List;

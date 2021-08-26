@@ -1,5 +1,6 @@
 package com.liudi.back.service;
 
+import com.liudi.back.dto.SdVoluntaryReportDto;
 import com.liudi.back.entity.SdVoluntaryReport;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import java.util.List;
@@ -14,6 +15,6 @@ import java.util.List;
  */
 public interface ISdVoluntaryReportService {
 
- List<SdVoluntaryReport> findListPage(Page page ,SdVoluntaryReport sdVoluntaryReport);
+ List<SdVoluntaryReport> findListPage(Page page , SdVoluntaryReportDto sdVoluntaryReport);
 
 }

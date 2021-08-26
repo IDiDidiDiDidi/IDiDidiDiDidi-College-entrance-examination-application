@@ -39,9 +39,12 @@ public class SchoolAddressServiceImpl implements ISchoolAddressService {
         return schoolAddressMapper.findListPage(page, schoolAddress);
     }
 
+    /**
+     * 将学校地址存入库中
+     * @param vos
+     */
 //    @Async("taskQueueExecutor")
     public void insertByBaidu(List<SdVoluntaryReportVo> vos) {
-//        List<SdVoluntaryReportVo> vos = sdVoluntaryReportMapper.groupBySchoolName();
         vos.stream().filter(Objects::nonNull).map(e -> {
             log.info("========= 线程 - {}", Thread.currentThread().getName());
             String schoolName = e.getSchoolName();

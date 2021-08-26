@@ -21,6 +21,7 @@ public interface IShandongBatchDeliveryService {
 
     /**
      * 输入成绩， 给出最低录取分数上下50分的所有学校
+     *
      * @param page
      * @param shandongBatchDelivery
      * @return
@@ -31,15 +32,9 @@ public interface IShandongBatchDeliveryService {
 
     /**
      * get by id
+     *
      * @param id
      * @return
      */
     ShandongBatchDelivery getById(String id);
-
-    /**
-     * 更新地图
-     * @return
-     */
-    Message updateMap();
-
 }

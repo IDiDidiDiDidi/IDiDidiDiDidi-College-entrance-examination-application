@@ -1,11 +1,14 @@
 package com.liudi.back.service.impl;
 
+import com.liudi.back.dto.SdVoluntaryReportDto;
 import com.liudi.back.entity.SdVoluntaryReport;
 import com.liudi.back.mapper.SdVoluntaryReportMapper;
 import com.liudi.back.service.ISdVoluntaryReportService;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import java.util.List;
+
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 /**
@@ -18,12 +21,13 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
  */
 @Service
 public class SdVoluntaryReportServiceImpl implements ISdVoluntaryReportService {
-      @Autowired
-      private SdVoluntaryReportMapper sdVoluntaryReportMapper;
-      @Override
-      public List<SdVoluntaryReport> findListPage(Page page ,SdVoluntaryReport sdVoluntaryReport){
-           return sdVoluntaryReportMapper.findListPage(page,sdVoluntaryReport);
-      }
+    @Autowired
+    private SdVoluntaryReportMapper sdVoluntaryReportMapper;
+
+    @Override
+    public List<SdVoluntaryReport> findListPage(Page page, SdVoluntaryReportDto dto) {
+        return sdVoluntaryReportMapper.findListPage(page, dto);
+    }
 
 
- }
+}
