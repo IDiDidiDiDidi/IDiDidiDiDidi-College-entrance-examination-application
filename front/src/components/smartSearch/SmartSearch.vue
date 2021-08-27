@@ -16,33 +16,60 @@
                 <!-- 搜索框 -->
                 <el-form ref="form" :model="queryInfo" label-width="80px">
                   <el-row>
-                    <el-col :span="4">
+                    <el-col :span="3">
                       <el-form-item label="分数">
                         <el-input v-model="queryInfo.score"></el-input>
                       </el-form-item>
                     </el-col>
 
-                    <el-col :span="4">
+                    <el-col :span="3">
                       <el-form-item label="分数范围">
                         <el-input v-model="queryInfo.scoreRange"></el-input>
                       </el-form-item>
                     </el-col>
 
-                    <el-col :span="4">
+                    <el-col :span="3">
                       <el-form-item label="专业">
                         <el-input v-model="queryInfo.score"></el-input>
                       </el-form-item>
                     </el-col>
 
                     <el-col :span="4">
-                      <el-form-item label="搜索方式">
-                        <el-input v-model="queryInfo.score"></el-input>
+                      <el-form-item label="省份">
+                        <el-select v-model="province" placeholder="请选择" @change="sysCityArea">
+                        <el-option
+                          v-for="item in areaProvinceList"
+                          :key="item.baseId"
+                          :label="item.baseName"
+                          :value="item.baseId"
+                          :disabled="item.disabled"
+                        >
+                        </el-option>
+                      </el-select>
                       </el-form-item>
                     </el-col>
+
                     <el-col :span="4">
+                      <el-form-item label="市">
+                        <el-select v-model="city" placeholder="请选择">
+                        <el-option
+                          v-for="item in areaCityList"
+                          :key="item.baseId"
+                          :label="item.baseName"
+                          :value="item.baseId"
+                          :disabled="item.disabled"
+                        >
+                        </el-option>
+                      </el-select>
+                      </el-form-item>
+                    </el-col>
+
+                    <el-col :span="4">
+                      <el-form-item label="">
                       <el-button type="primary" @click="getSearch">
                         搜索
                       </el-button>
+                      </el-form-item>
                     </el-col>
                   </el-row>
                 </el-form>
@@ -126,10 +153,19 @@ export default {
         { label: "20", value: "20" },
         { label: "30", value: "30" },
       ],
+      areaQuery: {
+        areaLevel: 1,
+        baseParentId: ''
+      },
+      areaProvinceList: [],
+      areaCityList: [],
+      province: '',
+      city: '',
     };
   },
   created() {
     this.getSearch();
+    this.sysProvinceArea();
   },
   methods: {
     logout() {
@@ -140,14 +176,46 @@ export default {
       const { data: res } = await this.$http.get("/search/list", {
         params: this.queryInfo,
       });
-      console.log(res);
+      // console.log(res);
       if (res.code !== 0) {
         return this.$message.error("获取用户列表失败");
       }
       this.scoreList = res.obj.content;
-      console.log(this.scoreList);
+      // console.log(this.scoreList);
       this.total = res.obj.totalCount;
     },
+    async sysProvinceArea() {
+      console.log('===== area =====' + this.province); 
+      const { data: res } = await this.$http.get("/sysArea/sysAreaLink", {
+        params: this.areaQuery,
+      });
+      
+      if (res.code !== 0) {
+        return this.$message.error("获取地址列表失败");
+      }
+      this.areaProvinceList = res.obj;
+      console.log(this.areaProvinceList);
+    },
+
+   async sysCityArea() {
+      console.log('===== area =====' + this.province); 
+      this.areaQuery.areaLevel = 2
+      this.areaQuery.baseParentId = this.province;
+
+      const { data: res } = await this.$http.get("/sysArea/sysAreaLink", {
+        params: this.areaQuery,
+      });
+      
+      if (res.code !== 0) {
+        return this.$message.error("获取地址列表失败");
+      }
+      this.areaCityList = res.obj;
+      console.log(this.areaCityList);
+    },
+
+
+
+
     tableRowClassName({ row, rowIndex }) {
       if (rowIndex === 1) {
         return "warning-row";
