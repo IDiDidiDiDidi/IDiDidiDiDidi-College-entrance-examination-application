@@ -1,9 +1,11 @@
 package com.liudi.back.service.impl;
 
-import com.liudi.back.dto.SdVoluntaryReportDto;
+import com.liudi.back.dto.SearchDto;
 import com.liudi.back.entity.SdVoluntaryReport;
 import com.liudi.back.mapper.SdVoluntaryReportMapper;
 import com.liudi.back.service.ISdVoluntaryReportService;
+import com.liudi.back.utils.BeanCopyUtil;
+import com.liudi.back.vo.SmartSearchVo;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -25,8 +27,12 @@ public class SdVoluntaryReportServiceImpl implements ISdVoluntaryReportService {
     private SdVoluntaryReportMapper sdVoluntaryReportMapper;
 
     @Override
-    public List<SdVoluntaryReport> findListPage(Page page, SdVoluntaryReportDto dto) {
-        return sdVoluntaryReportMapper.findListPage(page, dto);
+    public List<SmartSearchVo> findListPage(Page page, SearchDto dto) {
+        SdVoluntaryReport sdVoluntaryReport = BeanCopyUtil.convertBean(dto, SdVoluntaryReport.class);
+
+        List<SmartSearchVo> list = sdVoluntaryReportMapper.smartSearch(page, dto);
+
+        return list;
     }
 
 

@@ -1,8 +1,10 @@
 package com.liudi.back.controller;
 
 import com.liudi.back.core.base.WebController;
+import com.liudi.back.dto.SearchDto;
 import com.liudi.back.utils.BeanCopyUtil;
 import com.liudi.back.utils.Message;
+import com.liudi.back.vo.SmartSearchVo;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -32,7 +34,7 @@ import java.util.List;
  * @since 2021-08-26
  */
 @RestController
-@RequestMapping("sdVoluntaryReport")
+@RequestMapping("search")
 @Api(tags = "sdVoluntaryReport", description = "sdVoluntaryReport")
 public class SdVoluntaryReportController extends WebController {
     protected final Logger logger = LoggerFactory.getLogger(SdVoluntaryReportController.class);
@@ -42,15 +44,14 @@ public class SdVoluntaryReportController extends WebController {
 
 
     @ApiOperation(value = "自定义查询列表-分页")
-    @GetMapping("findSdVoluntaryReportListPage")
-    public Message findSdVoluntaryReportListPage(SdVoluntaryReportDto sdVoluntaryReportDto) {
+    @GetMapping("list")
+    public Message findSdVoluntaryReportListPage(SearchDto dto) {
         try {
-            Integer pageSize = sdVoluntaryReportDto.getPageSize();
-            Integer pageNum = sdVoluntaryReportDto.getPageNum();
+            Integer pageSize = dto.getPageSize();
+            Integer pageNum = dto.getPageNum();
             Page<SdVoluntaryReport> page = startPage(pageNum, pageSize);
-            SdVoluntaryReport sdVoluntaryReport = BeanCopyUtil.convertBean(sdVoluntaryReportDto, SdVoluntaryReport.class);
-            List<SdVoluntaryReport> list = sdVoluntaryReportService.findListPage(page, sdVoluntaryReportDto);
-            return Success(getPageResult(list, pageNum, pageSize, (int) page.getTotal()));
+            List<SmartSearchVo> listPage = sdVoluntaryReportService.findListPage(page, dto);
+            return Message.success(getPageResult(listPage, pageNum, pageSize, (int) page.getTotal()));
         } catch (Exception e) {
             logger.error("查询异常：===》" + e);
             return Error(e.getMessage());

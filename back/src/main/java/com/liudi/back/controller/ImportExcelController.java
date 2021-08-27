@@ -1,14 +1,11 @@
 package com.liudi.back.controller;
 
 import com.liudi.back.entity.SdVoluntaryReport;
-import com.liudi.back.entity.ShandongBatchDelivery;
 import com.liudi.back.service.IShandongBatchDeliveryService;
 import com.liudi.back.utils.BeanCopyUtil;
 import com.liudi.back.utils.ImportExcelUtil;
 import com.liudi.back.utils.Message;
 import com.liudi.back.vo.ImportSdExcelVo;
-import com.liudi.back.vo.SdVoluntaryReportVo;
-import com.liudi.back.vo.ShandongBatchDeliveryVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
@@ -26,8 +23,8 @@ import java.util.Map;
 @RestController
 @RequestMapping("schoolCode")
 @Api(tags = "导入 山东生源地各高校历年录取分数线 Excel数据", description = "schoolCode")
-public class importExcelController {
-    protected final Logger logger = LoggerFactory.getLogger(importExcelController.class);
+public class ImportExcelController {
+    protected final Logger logger = LoggerFactory.getLogger(ImportExcelController.class);
 
     @Autowired
     private IShandongBatchDeliveryService shandongBatchDeliveryService;

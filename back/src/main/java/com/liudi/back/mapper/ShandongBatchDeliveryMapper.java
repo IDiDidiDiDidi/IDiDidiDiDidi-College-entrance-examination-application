@@ -27,6 +27,7 @@ public interface ShandongBatchDeliveryMapper extends BaseMapper<ShandongBatchDel
 
     /**
      * 求学校编码
+     *
      * @return 求学校编码
      */
     List<SchoolNameCodeVo> getSchoolCode();

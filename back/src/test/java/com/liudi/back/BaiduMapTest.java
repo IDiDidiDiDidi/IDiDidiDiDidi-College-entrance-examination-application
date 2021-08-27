@@ -16,8 +16,6 @@ import java.util.List;
 
 @SpringBootTest
 public class BaiduMapTest {
-    @Autowired
-    private AsyncTaskService asyncTaskService;
 
     @Autowired
     private SdVoluntaryReportMapper sdVoluntaryReportMapper;

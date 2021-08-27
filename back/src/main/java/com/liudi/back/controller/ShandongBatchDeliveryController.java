@@ -31,8 +31,7 @@ import java.util.List;
  * @since 2021-08-03
  */
 @RestController
-@RequestMapping("search")
-@CrossOrigin
+@RequestMapping("shandongBatchDelivery")
 @Api(tags = "shandongBatchDelivery", description = "shandongBatchDelivery")
 public class ShandongBatchDeliveryController extends WebController {
     protected final Logger logger = LoggerFactory.getLogger(ShandongBatchDeliveryController.class);

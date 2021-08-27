@@ -68,5 +68,22 @@
         school_name
     </select>
 
+    <select id="smartSearch" resultType="com.liudi.back.vo.SmartSearchVo">
+        SELECT
+        school_name,
+        count( * ) as count,
+        lowest_score,
+        lowest_position
+        FROM
+        sd_voluntary_report
+        <where>
+            is_delete = 0
+            and lowest_score &gt; (#{dto.score} - #{dto.scoreRange})
+            and lowest_score &lt; (#{dto.score} + #{dto.scoreRange})
+            <if test= "dto.year !=null and dto.year != ''"> and year = #{dto.year}</if>
+        </where>
+        GROUP BY school_name
+    </select>
+
 
 </mapper>

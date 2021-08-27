@@ -4,7 +4,8 @@ module.exports = {
         overlay: {
             warnings: false,
             errors: false
-        }
+        },
+        changeOrigin: true
     },
     lintOnSave: false
 }
