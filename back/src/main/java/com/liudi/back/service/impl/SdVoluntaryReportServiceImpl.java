@@ -1,5 +1,6 @@
 package com.liudi.back.service.impl;
 
+import com.liudi.back.core.base.StringUtil;
 import com.liudi.back.dto.SearchDto;
 import com.liudi.back.entity.SdVoluntaryReport;
 import com.liudi.back.mapper.SdVoluntaryReportMapper;
@@ -29,6 +30,14 @@ public class SdVoluntaryReportServiceImpl implements ISdVoluntaryReportService {
     @Override
     public List<SmartSearchVo> findListPage(Page page, SearchDto dto) {
         SdVoluntaryReport sdVoluntaryReport = BeanCopyUtil.convertBean(dto, SdVoluntaryReport.class);
+        if (dto != null || !StringUtil.isEmpty(dto.getProvinceId())) {
+            if (!StringUtil.isEmpty(dto.getCityId())) {
+                dto.setAreaBaseId(dto.getCityId());
+            } else {
+                dto.setAreaBaseId(dto.getProvinceId());
+            }
+        }
+
 
         List<SmartSearchVo> list = sdVoluntaryReportMapper.smartSearch(page, dto);
 

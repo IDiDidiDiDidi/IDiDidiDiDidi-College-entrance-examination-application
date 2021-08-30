@@ -70,19 +70,32 @@
 
     <select id="smartSearch" resultType="com.liudi.back.vo.SmartSearchVo">
         SELECT
-        school_name,
-        count( * ) as count,
-        lowest_score,
-        lowest_position
+        svr.school_name,
+        count( * ) AS count,
+        svr.lowest_score,
+        svr.lowest_position,
+        sa.formatted_address
         FROM
-        sd_voluntary_report
+        sd_voluntary_report svr,
+        school_address sa,
+        sys_area area
         <where>
-            is_delete = 0
-            and lowest_score &gt; (#{dto.score} - #{dto.scoreRange})
-            and lowest_score &lt; (#{dto.score} + #{dto.scoreRange})
+            svr.is_delete = 0
+            and svr.school_no = sa.school_no
+            <if test="dto.areaBaseId !=null and dto.areaBaseId != ''">and area.base_id =  #{dto.areaBaseId}</if>
+            <choose>
+                <when test="dto.cityId == null or dto.cityId == ''">
+                    and area.base_name = sa.province
+                </when>
+                <otherwise>
+                    and area.base_name = sa.city
+                </otherwise>
+            </choose>
+            and svr.lowest_score &gt; (#{dto.score} - #{dto.scoreRange})
+            and svr.lowest_score &lt; (#{dto.score} + #{dto.scoreRange})
             <if test= "dto.year !=null and dto.year != ''"> and year = #{dto.year}</if>
         </where>
-        GROUP BY school_name
+        GROUP BY svr.school_name
     </select>
 
 

@@ -19,4 +19,12 @@ public class SearchDto extends PageDto {
 
     @ApiModelProperty("year")
     private String year;
+
+    @ApiModelProperty("city_id")
+    private String cityId;
+
+    @ApiModelProperty("provinceId")
+    private String provinceId;
+
+    private String areaBaseId;
 }

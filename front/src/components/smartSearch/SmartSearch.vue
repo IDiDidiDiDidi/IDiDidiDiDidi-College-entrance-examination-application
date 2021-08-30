@@ -36,39 +36,43 @@
 
                     <el-col :span="4">
                       <el-form-item label="省份">
-                        <el-select v-model="province" placeholder="请选择" @change="sysCityArea">
-                        <el-option
-                          v-for="item in areaProvinceList"
-                          :key="item.baseId"
-                          :label="item.baseName"
-                          :value="item.baseId"
-                          :disabled="item.disabled"
+                        <el-select
+                          v-model="province"
+                          placeholder="请选择"
+                          @change="sysCityArea"
                         >
-                        </el-option>
-                      </el-select>
+                          <el-option
+                            v-for="item in areaProvinceList"
+                            :key="item.baseId"
+                            :label="item.baseName"
+                            :value="item.baseId"
+                            :disabled="item.disabled"
+                          >
+                          </el-option>
+                        </el-select>
                       </el-form-item>
                     </el-col>
 
                     <el-col :span="4">
                       <el-form-item label="市">
                         <el-select v-model="city" placeholder="请选择">
-                        <el-option
-                          v-for="item in areaCityList"
-                          :key="item.baseId"
-                          :label="item.baseName"
-                          :value="item.baseId"
-                          :disabled="item.disabled"
-                        >
-                        </el-option>
-                      </el-select>
+                          <el-option
+                            v-for="item in areaCityList"
+                            :key="item.baseId"
+                            :label="item.baseName"
+                            :value="item.baseId"
+                            :disabled="item.disabled"
+                          >
+                          </el-option>
+                        </el-select>
                       </el-form-item>
                     </el-col>
 
                     <el-col :span="4">
                       <el-form-item label="">
-                      <el-button type="primary" @click="getSearch">
-                        搜索
-                      </el-button>
+                        <el-button type="primary" @click="getSearch">
+                          搜索
+                        </el-button>
                       </el-form-item>
                     </el-col>
                   </el-row>
@@ -140,6 +144,8 @@ export default {
       queryInfo: {
         score: 610,
         scoreRange: 5,
+        provinceId: '',
+        cityId: '',
         // 当前页码
         pageNum: 1,
         // 当前每页显示多少条数据
@@ -155,24 +161,47 @@ export default {
       ],
       areaQuery: {
         areaLevel: 1,
-        baseParentId: ''
+        baseParentId: "",
       },
       areaProvinceList: [],
       areaCityList: [],
-      province: '',
-      city: '',
+      province: "",
+      city: "",
     };
   },
   created() {
     this.getSearch();
+    this.initData();
+
     this.sysProvinceArea();
   },
   methods: {
+    // 初始化
+    initData() {
+      this.areaProvinceList.unshift({
+        baseId: "",
+        baseName: "全部",
+      });
+      this.areaCityList.unshift({
+        baseId: "",
+        baseName: "全部",
+      });
+    },
     logout() {
       window.sessionStorage.clear();
       this.$router.push("/login");
     },
     async getSearch() {
+      console.log("===== province =====" + this.province);
+      console.log("===== city =====" + this.city);
+
+      if (this.province !== null || this.province !== '') {
+        this.queryInfo.provinceId = this.province;
+      }
+      if (this.city !== null || this.city !== '') {
+        this.queryInfo.cityId = this.city;
+      }
+
       const { data: res } = await this.$http.get("/search/list", {
         params: this.queryInfo,
       });
@@ -185,11 +214,11 @@ export default {
       this.total = res.obj.totalCount;
     },
     async sysProvinceArea() {
-      console.log('===== area =====' + this.province); 
+      console.log("===== area =====" + this.province);
       const { data: res } = await this.$http.get("/sysArea/sysAreaLink", {
         params: this.areaQuery,
       });
-      
+
       if (res.code !== 0) {
         return this.$message.error("获取地址列表失败");
       }
@@ -197,24 +226,21 @@ export default {
       console.log(this.areaProvinceList);
     },
 
-   async sysCityArea() {
-      console.log('===== area =====' + this.province); 
-      this.areaQuery.areaLevel = 2
+    async sysCityArea() {
+      console.log("===== area =====" + this.province);
+      this.areaQuery.areaLevel = 2;
       this.areaQuery.baseParentId = this.province;
 
       const { data: res } = await this.$http.get("/sysArea/sysAreaLink", {
         params: this.areaQuery,
       });
-      
+
       if (res.code !== 0) {
         return this.$message.error("获取地址列表失败");
       }
       this.areaCityList = res.obj;
       console.log(this.areaCityList);
     },
-
-
-
 
     tableRowClassName({ row, rowIndex }) {
       if (rowIndex === 1) {
