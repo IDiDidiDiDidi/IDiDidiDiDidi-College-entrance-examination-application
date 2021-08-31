@@ -33,4 +33,11 @@ public interface SdVoluntaryReportMapper extends BaseMapper<SdVoluntaryReport> {
     List<SdVoluntaryReportVo> groupBySchoolName();
 
     List<SmartSearchVo> smartSearch(Page page, @Param("dto") SearchDto dto);
+
+    /**
+     * 获取企业详情
+     * @param id the sd_voluntary_report base_id
+     * @return
+     */
+    List<SdVoluntaryReport> getDetail(@Param("id") String id);
 }

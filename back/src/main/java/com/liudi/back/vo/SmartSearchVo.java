@@ -7,6 +7,8 @@ import lombok.Data;
 @Data
 @ApiModel(value = "ShandongBatchDeliveryVo对象", description = "搜索显示VO")
 public class SmartSearchVo {
+    @ApiModelProperty(value = "schoolNo")
+    private String schoolNo;
 
     @ApiModelProperty(value = "院校")
     private String schoolName;
@@ -20,5 +22,9 @@ public class SmartSearchVo {
     @ApiModelProperty(value = "该校录取最")
     private String lowestPosition;
 
+    @ApiModelProperty(value = "地址")
+    private String address;
 
+    @ApiModelProperty(value = "地址")
+    private String year;
 }

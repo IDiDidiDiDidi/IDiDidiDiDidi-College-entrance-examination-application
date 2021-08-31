@@ -34,6 +34,13 @@
                       </el-form-item>
                     </el-col>
 
+
+                    <el-col :span="3">
+                      <el-form-item label="年份">
+                        <el-input v-model="queryInfo.year"></el-input>
+                      </el-form-item>
+                    </el-col>
+
                     <el-col :span="4">
                       <el-form-item label="省份">
                         <el-select
@@ -103,12 +110,22 @@
                   </el-table-column>
                   <el-table-column property="lowestScore" label="最低录取分数">
                   </el-table-column>
+                  <el-table-column property="year" label="年份">
+                  </el-table-column>
                   <el-table-column
                     property="lowestPosition"
                     label="最低录取名次"
                   >
                   </el-table-column>
-                  <el-table-column property="schoolName" label="详情">
+                  <el-table-column label="详情">
+                    <template slot-scope="scope">
+                        <el-button
+                        size="mini"
+                        type="text"
+                        icon="el-icon-view"
+                        @click.stop="handleDetail(scope.row)"
+                        >详情</el-button>
+                    </template>
                   </el-table-column>
                 </el-table>
 
@@ -142,10 +159,11 @@ export default {
     return {
       //   查询参数
       queryInfo: {
-        score: 610,
-        scoreRange: 5,
+        score: 550,
+        scoreRange: 100,
         provinceId: '',
         cityId: '',
+        year: '',
         // 当前页码
         pageNum: 1,
         // 当前每页显示多少条数据
@@ -167,6 +185,8 @@ export default {
       areaCityList: [],
       province: "",
       city: "",
+      val:'',
+      id:'', 
     };
   },
   created() {
@@ -192,13 +212,10 @@ export default {
       this.$router.push("/login");
     },
     async getSearch() {
-      console.log("===== province =====" + this.province);
-      console.log("===== city =====" + this.city);
-
-      if (this.province !== null || this.province !== '') {
+      if (this.province !== null || this.province !== "") {
         this.queryInfo.provinceId = this.province;
       }
-      if (this.city !== null || this.city !== '') {
+      if (this.city !== null || this.city !== "") {
         this.queryInfo.cityId = this.city;
       }
 
@@ -214,7 +231,7 @@ export default {
       this.total = res.obj.totalCount;
     },
     async sysProvinceArea() {
-      console.log("===== area =====" + this.province);
+      // console.log("===== area =====" + this.province);
       const { data: res } = await this.$http.get("/sysArea/sysAreaLink", {
         params: this.areaQuery,
       });
@@ -227,7 +244,7 @@ export default {
     },
 
     async sysCityArea() {
-      console.log("===== area =====" + this.province);
+      // console.log("===== area =====" + this.province);
       this.areaQuery.areaLevel = 2;
       this.areaQuery.baseParentId = this.province;
 
@@ -263,6 +280,18 @@ export default {
       this.queryInfo.pageNum = newPage;
       this.getSearch();
     },
+    handleDetail(val) {
+      console.log("===============schoolNo: " + val.schoolNo)
+      // this.baseId = val.baseId;
+      const { href } = this.$router.resolve({
+          path: "/smartSearch/detail",
+          query: { schoolNo: val.schoolNo,
+                   schoolName: val.schoolName
+                 }
+        });
+        // window.open("#/smartSearch/detail", "_blank");
+        window.open(href, "_blank");
+    }
   },
 };
 </script>

@@ -46,16 +46,16 @@ public class SdVoluntaryReportController extends WebController {
     @ApiOperation(value = "自定义查询列表-分页")
     @GetMapping("list")
     public Message findSdVoluntaryReportListPage(SearchDto dto) {
-        try {
+//        try {
             Integer pageSize = dto.getPageSize();
             Integer pageNum = dto.getPageNum();
             Page<SdVoluntaryReport> page = startPage(pageNum, pageSize);
             List<SmartSearchVo> listPage = sdVoluntaryReportService.findListPage(page, dto);
             return Message.success(getPageResult(listPage, pageNum, pageSize, (int) page.getTotal()));
-        } catch (Exception e) {
-            logger.error("查询异常：===》" + e);
-            return Error(e.getMessage());
-        }
+//        } catch (Exception e) {
+//            logger.error("查询异常：===》" + e);
+//            return Error(e.getMessage());
+//        }
     }
 
 
@@ -71,17 +71,17 @@ public class SdVoluntaryReportController extends WebController {
 //        }
 //    }
 //
-//    @ApiOperation(value = "数据详情")
-//    @GetMapping("/{id}")
-//    public Message getSdVoluntaryReportInfo(@PathVariable("id") String id) {
-//        try {
-//            SdVoluntaryReport sdVoluntaryReport = sdVoluntaryReportService.getById(id);
-//            return Success(sdVoluntaryReport);
-//        } catch (Exception e) {
-//            logger.error("查询异常：===》" + e);
-//            return Error(e.getMessage());
-//        }
-//    }
+    @ApiOperation(value = "数据详情")
+    @GetMapping("/{id}")
+    public Message getSdVoluntaryReportInfo(@PathVariable("id") String id) {
+        try {
+            List<SdVoluntaryReport> sdVoluntaryReport = sdVoluntaryReportService.getById(id);
+            return Success(sdVoluntaryReport);
+        } catch (Exception e) {
+            logger.error("查询异常：===》" + e);
+            return Error(e.getMessage());
+        }
+    }
 //
 //    @ApiOperation(value = "根据id更新")
 //    @PutMapping()

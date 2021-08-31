@@ -70,11 +70,13 @@
 
     <select id="smartSearch" resultType="com.liudi.back.vo.SmartSearchVo">
         SELECT
+        svr.school_no as schoolNo,
         svr.school_name,
         count( * ) AS count,
         svr.lowest_score,
         svr.lowest_position,
-        sa.formatted_address
+        sa.formatted_address as address,
+        svr.year
         FROM
         sd_voluntary_report svr,
         school_address sa,
@@ -96,6 +98,10 @@
             <if test= "dto.year !=null and dto.year != ''"> and year = #{dto.year}</if>
         </where>
         GROUP BY svr.school_name
+    </select>
+
+    <select id="getDetail" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List" /> from sd_voluntary_report where school_no = #{id}
     </select>
 
 

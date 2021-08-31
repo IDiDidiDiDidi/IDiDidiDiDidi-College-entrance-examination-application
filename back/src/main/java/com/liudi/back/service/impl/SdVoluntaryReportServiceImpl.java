@@ -37,11 +37,12 @@ public class SdVoluntaryReportServiceImpl implements ISdVoluntaryReportService {
                 dto.setAreaBaseId(dto.getProvinceId());
             }
         }
+        return sdVoluntaryReportMapper.smartSearch(page, dto);
+    }
 
-
-        List<SmartSearchVo> list = sdVoluntaryReportMapper.smartSearch(page, dto);
-
-        return list;
+    @Override
+    public List<SdVoluntaryReport> getById(String id) {
+        return sdVoluntaryReportMapper.getDetail(id);
     }
 
 

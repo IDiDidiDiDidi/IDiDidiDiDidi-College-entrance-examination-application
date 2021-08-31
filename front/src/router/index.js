@@ -4,6 +4,7 @@ import Login from '../components/Login.vue'
 import Home from '../components/Home.vue'
 import User from '../components/user/User.vue'
 import SmartSearch from '../components/smartSearch/SmartSearch.vue'
+import Detail from '../components/smartSearch/Detail.vue'
 
 Vue.use(VueRouter)
 
@@ -14,6 +15,7 @@ const router = new VueRouter({
     { path: '/home', component: Home },
     { path: '/user', component: User },
     { path: '/smartSearch', component: SmartSearch },
+    { path: '/smartSearch/detail', component: Detail },
   ]
 })
 
@@ -22,6 +24,7 @@ router.beforeEach((to, from, next) => {
   if(to.path === '/login') return next()
 
   if(to.path === '/smartSearch') return next()
+  if(to.path === '/smartSearch/detail') return next()
   if(to.path === '/user') return next()
 
   // 获取 token

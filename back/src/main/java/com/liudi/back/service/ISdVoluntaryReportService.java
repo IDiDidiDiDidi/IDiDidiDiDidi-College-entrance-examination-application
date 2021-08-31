@@ -2,6 +2,7 @@ package com.liudi.back.service;
 
 import com.liudi.back.dto.SearchDto;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.liudi.back.entity.SdVoluntaryReport;
 import com.liudi.back.vo.SmartSearchVo;
 
 import java.util.List;
@@ -18,4 +19,5 @@ public interface ISdVoluntaryReportService {
 
     List<SmartSearchVo> findListPage(Page page, SearchDto sdVoluntaryReport);
 
+    List<SdVoluntaryReport> getById(String id);
 }
