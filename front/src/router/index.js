@@ -10,7 +10,7 @@ Vue.use(VueRouter)
 
 const router = new VueRouter({
   routes: [
-    { path: '/', redirect: '/login' },
+    { path: '/', redirect: '/smartSearch' },
     { path: '/login', component: Login },
     { path: '/home', component: Home },
     { path: '/user', component: User },
@@ -29,7 +29,7 @@ router.beforeEach((to, from, next) => {
 
   // 获取 token
   const tokenStr = window.sessionStorage.getItem('token')
-  if(!tokenStr) return next('/login')
+  if(!tokenStr) return next('/smartSearch')
   next()
 })
 

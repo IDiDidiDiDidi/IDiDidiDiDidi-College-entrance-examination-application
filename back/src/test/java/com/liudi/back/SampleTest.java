@@ -28,14 +28,14 @@ public class SampleTest {
     @Autowired
     private ShandongBatchDeliveryMapper shandongBatchDeliveryMapper;
 
-    @Test
+//    @Test
     public void testUserSelect() {
         System.out.println(("----- selectAll method test ------"));
         List<User> userList = userMapper.selectList(null);
         userList.forEach(System.out::println);
     }
 
-    @Test
+//    @Test
     public void testSelect() {
         System.out.println(("----- selectAll method test ------"));
 
@@ -58,7 +58,7 @@ public class SampleTest {
     }
 
 
-    @Test
+//    @Test
     void updateSchoolCode() {
         List<SchoolNameCodeVo> vos = shandongBatchDeliveryMapper.getSchoolCode();
         log.info("=========== vos: {}", JSON.toJSONString(vos));

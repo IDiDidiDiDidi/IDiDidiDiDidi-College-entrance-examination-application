@@ -23,7 +23,7 @@ public class BaiduMapTest {
     @Autowired
     private ISchoolAddressService schoolAddressService;
 
-    @Test
+//    @Test
     public void test() {
         BaiduMapLngLatBean lngLatBean = BaiduMapUtils.addressTolongitudea("西北民族大学榆中校区");
         Location location = lngLatBean.getLocation();
@@ -31,7 +31,7 @@ public class BaiduMapTest {
         System.out.println(JSON.toJSONString(baiduMapAddressBean));
     }
 
-    @Test
+//    @Test
     void insertToSchoolAddress() {
         List<SdVoluntaryReportVo> vos = sdVoluntaryReportMapper.groupBySchoolName();
         schoolAddressService.insertByBaidu(vos);

@@ -7,15 +7,15 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
-
-    @Value("${allowedOrigins}")
-    private String allowedOrigins;
+//
+//    @Value("${allowedOrigins}")
+//    private String allowedOrigins;
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**").allowedOrigins(allowedOrigins)
+        registry.addMapping("/**").allowedOrigins("*")
                 .allowedHeaders("*")
-                .allowedMethods("*")
+                .allowedMethods("POST", "GET", "PUT", "OPTIONS", "DELETE")
                 .maxAge(30 * 1000);
     }
 }

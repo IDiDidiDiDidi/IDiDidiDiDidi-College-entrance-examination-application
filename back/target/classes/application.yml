@@ -55,4 +55,4 @@ task:
     queueCapacity: 8
     keepAlive: 60
 
-allowedOrigins: http://localhost:8089
+allowedOrigins: http://39.96.72.22:80

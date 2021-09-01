@@ -8,3 +8,9 @@ word/~$shandong2020first.xlsx
 back/back.iml
 
 front/node_modules/
+
+back/target/
+
+front/dist/
+
+front/dist.zip
