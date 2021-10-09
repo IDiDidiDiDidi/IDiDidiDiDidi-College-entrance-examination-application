@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liudi.back.mapper.CraneMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.liudi.back.entity.Crane">
+        <id column="base_id" property="baseId"/>
+        <result column="base_create_time" property="baseCreateTime"/>
+        <result column="base_update_time" property="baseUpdateTime"/>
+        <result column="creator" property="creator"/>
+        <result column="is_delete" property="isDelete"/>
+        <result column="name" property="name"/>
+        <result column="tonnage" property="tonnage"/>
+        <result column="license_colour" property="licenseColour"/>
+        <result column="is_self_made" property="isSelfMade"/>
+        <result column="main_hook_winch" property="mainHookWinch"/>
+        <result column="chassis_model" property="chassisModel"/>
+        <result column="chassis_brand" property="chassisBrand"/>
+        <result column="reducer_model" property="reducerModel"/>
+        <result column="lifting_height" property="liftingHeight"/>
+        <result column="slewing_support" property="slewingSupport"/>
+        <result column="u_shaped_boom" property="uShapedBoom"/>
+        <result column="hydraulic_system" property="hydraulicSystem"/>
+        <result column="outrigger_span" property="outriggerSpan"/>
+        <result column="big_frame" property="bigFrame"/>
+        <result column="dimensions" property="dimensions"/>
+        <result column="back_shift" property="backShift"/>
+        <result column="engine_model" property="engineModel"/>
+        <result column="direction_form" property="directionForm"/>
+        <result column="engine_power" property="enginePower"/>
+        <result column="braking_form" property="brakingForm"/>
+        <result column="tyre_model" property="tyreModel"/>
+        <result column="gearbox" property="gearbox"/>
+        <result column="speed" property="speed"/>
+        <result column="operating_room" property="operatingRoom"/>
+        <result column="wheelbase" property="wheelbase"/>
+        <result column="weight" property="weight"/>
+        <result column="other_configuration" property="otherConfiguration"/>
+        <result column="optional" property="optional"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        base_id, base_create_time, base_update_time, creator, is_delete, name, tonnage, license_colour, is_self_made, main_hook_winch, chassis_model, chassis_brand, reducer_model, lifting_height, slewing_support, u_shaped_boom, hydraulic_system, outrigger_span, big_frame, dimensions, back_shift, engine_model, direction_form, engine_power, braking_form, tyre_model, gearbox, speed, operating_room, wheelbase, weight, other_configuration, optional
+    </sql>
+
+
+    <select id="findListPage" resultMap="BaseResultMap" parameterType="com.liudi.back.entity.Crane">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM crane
+        <where>
+                <if test= "crane.baseId !=null and crane.baseId != ''"> and base_id = #{crane.baseId}</if>
+                <if test= "crane.baseCreateTime !=null "> and base_create_time =  #{crane.baseCreateTime} </if>
+                <if test= "crane.baseUpdateTime !=null "> and base_update_time =  #{crane.baseUpdateTime} </if>
+                <if test= "crane.creator !=null and crane.creator != ''"> and creator = #{crane.creator}</if>
+                <if test= "crane.isDelete !=null "> and is_delete =  #{crane.isDelete} </if>
+                <if test= "crane.name !=null and crane.name != ''"> and name = #{crane.name}</if>
+                <if test= "crane.tonnage !=null and crane.tonnage != ''"> and tonnage = #{crane.tonnage}</if>
+                <if test= "crane.licenseColour !=null and crane.licenseColour != ''"> and license_colour = #{crane.licenseColour}</if>
+                <if test= "crane.isSelfMade !=null and crane.isSelfMade != ''"> and is_self_made = #{crane.isSelfMade}</if>
+                <if test= "crane.mainHookWinch !=null and crane.mainHookWinch != ''"> and main_hook_winch = #{crane.mainHookWinch}</if>
+                <if test= "crane.chassisModel !=null and crane.chassisModel != ''"> and chassis_model = #{crane.chassisModel}</if>
+                <if test= "crane.chassisBrand !=null and crane.chassisBrand != ''"> and chassis_brand = #{crane.chassisBrand}</if>
+                <if test= "crane.reducerModel !=null and crane.reducerModel != ''"> and reducer_model = #{crane.reducerModel}</if>
+                <if test= "crane.liftingHeight !=null and crane.liftingHeight != ''"> and lifting_height = #{crane.liftingHeight}</if>
+                <if test= "crane.slewingSupport !=null and crane.slewingSupport != ''"> and slewing_support = #{crane.slewingSupport}</if>
+                <if test= "crane.uShapedBoom !=null and crane.uShapedBoom != ''"> and u_shaped_boom = #{crane.uShapedBoom}</if>
+                <if test= "crane.hydraulicSystem !=null and crane.hydraulicSystem != ''"> and hydraulic_system = #{crane.hydraulicSystem}</if>
+                <if test= "crane.outriggerSpan !=null and crane.outriggerSpan != ''"> and outrigger_span = #{crane.outriggerSpan}</if>
+                <if test= "crane.bigFrame !=null and crane.bigFrame != ''"> and big_frame = #{crane.bigFrame}</if>
+                <if test= "crane.dimensions !=null and crane.dimensions != ''"> and dimensions = #{crane.dimensions}</if>
+                <if test= "crane.backShift !=null and crane.backShift != ''"> and back_shift = #{crane.backShift}</if>
+                <if test= "crane.engineModel !=null and crane.engineModel != ''"> and engine_model = #{crane.engineModel}</if>
+                <if test= "crane.directionForm !=null and crane.directionForm != ''"> and direction_form = #{crane.directionForm}</if>
+                <if test= "crane.enginePower !=null and crane.enginePower != ''"> and engine_power = #{crane.enginePower}</if>
+                <if test= "crane.brakingForm !=null and crane.brakingForm != ''"> and braking_form = #{crane.brakingForm}</if>
+                <if test= "crane.tyreModel !=null and crane.tyreModel != ''"> and tyre_model = #{crane.tyreModel}</if>
+                <if test= "crane.gearbox !=null and crane.gearbox != ''"> and gearbox = #{crane.gearbox}</if>
+                <if test= "crane.speed !=null and crane.speed != ''"> and speed = #{crane.speed}</if>
+                <if test= "crane.operatingRoom !=null and crane.operatingRoom != ''"> and operating_room = #{crane.operatingRoom}</if>
+                <if test= "crane.wheelbase !=null and crane.wheelbase != ''"> and wheelbase = #{crane.wheelbase}</if>
+                <if test= "crane.weight !=null and crane.weight != ''"> and weight = #{crane.weight}</if>
+                <if test= "crane.otherConfiguration !=null and crane.otherConfiguration != ''"> and other_configuration = #{crane.otherConfiguration}</if>
+                <if test= "crane.optional !=null and crane.optional != ''"> and optional = #{crane.optional}</if>
+        </where>
+    </select>
+
+
+</mapper>
