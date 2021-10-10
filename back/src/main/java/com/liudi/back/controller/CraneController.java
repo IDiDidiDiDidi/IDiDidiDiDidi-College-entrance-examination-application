@@ -4,6 +4,7 @@ import com.liudi.back.core.base.StringUtil;
 import com.liudi.back.core.base.WebController;
 import com.liudi.back.utils.BeanCopyUtil;
 import com.liudi.back.utils.Message;
+import com.liudi.back.vo.CraneVo;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -41,7 +42,7 @@ public class CraneController extends WebController {
     @Autowired
     private ICraneService craneService;
 
-    @ApiOperation(value = "保存")
+    @ApiOperation(value = "保存", response = CraneDto.class)
     @PostMapping("")
     public Message addCrane(@RequestBody CraneDto craneDto) {
         try {
@@ -53,11 +54,12 @@ public class CraneController extends WebController {
         }
     }
 
-    @ApiOperation(value = "查询所有")
-    @GetMapping()
-    public Message getCraneList() {
+    @ApiOperation(value = "获取该吨位下所有车型号")
+    @GetMapping("/tonnage/{t}")
+    public Message getCraneList(@PathVariable("t") String t){
         try {
-            return Success(craneService.list());
+            List<CraneVo> list = craneService.getByTonnage(t);
+            return Success(list);
         } catch (Exception e) {
             logger.error("查询异常：===》" + e);
             return Error(e.getMessage());

@@ -37,6 +37,8 @@
         <result column="weight" property="weight"/>
         <result column="other_configuration" property="otherConfiguration"/>
         <result column="optional" property="optional"/>
+        <result column="img" property="img"/>
+        <result column="type" property="type"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->
@@ -84,6 +86,16 @@
                 <if test= "crane.otherConfiguration !=null and crane.otherConfiguration != ''"> and other_configuration = #{crane.otherConfiguration}</if>
                 <if test= "crane.optional !=null and crane.optional != ''"> and optional = #{crane.optional}</if>
         </where>
+    </select>
+
+    <select id="getByTonnage" resultType="com.liudi.back.vo.CraneVo">
+        SELECT
+            base_id, name , img
+        FROM
+            crane
+        WHERE
+            is_self_made = 0
+          and tonnage = #{t}
     </select>
 
 

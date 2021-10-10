@@ -30,6 +30,10 @@ public class CraneVo extends BaseVo {
     private Boolean isDelete;
     @ApiModelProperty(value = "车名")
     private String name;
+    @ApiModelProperty(value = "type")
+    private String type;
+    @ApiModelProperty(value = "img")
+    private String img;
     @ApiModelProperty(value = "吨位")
     private String tonnage;
     @ApiModelProperty(value = "蓝牌、黄牌")

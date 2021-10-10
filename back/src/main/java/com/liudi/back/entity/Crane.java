@@ -129,4 +129,7 @@ public class Crane extends InfoEntity {
      */
     private String optional;
 
+    private String img;
+
+    private String type;
 }

@@ -14,3 +14,5 @@ back/target/
 front/dist/
 
 front/dist.zip
+
+.DS_Store

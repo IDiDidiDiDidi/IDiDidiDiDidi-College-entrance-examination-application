@@ -3,6 +3,8 @@ package com.liudi.back.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.liudi.back.entity.Crane;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.liudi.back.vo.CraneVo;
+
 import java.util.List;
 
 /**
@@ -15,6 +17,11 @@ import java.util.List;
  */
 public interface ICraneService extends IService<Crane> {
 
- List<Crane> findListPage(Page page ,Crane crane);
+    List<Crane> findListPage(Page page, Crane crane);
 
+    /**
+     * 获取全部的吨位分类
+     * @return
+     */
+    List<CraneVo> getByTonnage(String t);
 }

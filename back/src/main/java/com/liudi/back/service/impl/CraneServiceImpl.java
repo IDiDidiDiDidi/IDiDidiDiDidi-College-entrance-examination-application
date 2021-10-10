@@ -6,6 +6,7 @@ import com.liudi.back.entity.SysArea;
 import com.liudi.back.mapper.CraneMapper;
 import com.liudi.back.mapper.SysAreaMapper;
 import com.liudi.back.service.ICraneService;
+import com.liudi.back.vo.CraneVo;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
@@ -28,6 +29,11 @@ public class CraneServiceImpl extends BaseSerivceImpl<CraneMapper, Crane> implem
       @Override
       public List<Crane> findListPage(Page page ,Crane crane){
            return craneMapper.findListPage(page,crane);
+      }
+
+      @Override
+      public List<CraneVo> getByTonnage(String t) {
+            return craneMapper.getByTonnage(t);
       }
 
 }
