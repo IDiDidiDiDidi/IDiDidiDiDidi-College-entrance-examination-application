@@ -17,7 +17,6 @@ import lombok.Data;
 @Data
 @ApiModel(value = "CraneVo对象", description = "吊车详细配置")
 public class CraneVo extends BaseVo {
-
     @ApiModelProperty(value = "主键Id")
     private String baseId;
     @ApiModelProperty(value = "创建时间")
@@ -28,18 +27,18 @@ public class CraneVo extends BaseVo {
     private String creator;
     @ApiModelProperty(value = "逻辑删除（0:未删除,1:删除）")
     private Boolean isDelete;
+    @ApiModelProperty(value = "汽车吊/自制吊/orther")
+    private String type;
     @ApiModelProperty(value = "车名")
     private String name;
-    @ApiModelProperty(value = "type")
-    private String type;
-    @ApiModelProperty(value = "img")
-    private String img;
     @ApiModelProperty(value = "吨位")
     private String tonnage;
     @ApiModelProperty(value = "蓝牌、黄牌")
     private String licenseColour;
     @ApiModelProperty(value = "是否自制")
     private String isSelfMade;
+    @ApiModelProperty(value = "副钩绞车")
+    private String secondaryHookWinch;
     @ApiModelProperty(value = "主钩绞车")
     private String mainHookWinch;
     @ApiModelProperty(value = "底盘型号")
@@ -88,5 +87,21 @@ public class CraneVo extends BaseVo {
     private String otherConfiguration;
     @ApiModelProperty(value = "选配")
     private String optional;
+    @ApiModelProperty(value = "")
+    private String img;
+    @ApiModelProperty(value = "发动机三泵")
+    private String engineThreePumps;
+    @ApiModelProperty(value = "电机")
+    private String motorThreePumps;
+    @ApiModelProperty(value = "中心回转")
+    private String centerRotation;
+    @ApiModelProperty(value = "电机功率")
+    private String motorPower;
+    @ApiModelProperty(value = "起升速度（副主钩）")
+    private Double liftingSpeed;
+    @ApiModelProperty(value = "大臂")
+    private String bigArm;
+    @ApiModelProperty(value = "回转速度")
+    private Double swingSpeed;
 
 }

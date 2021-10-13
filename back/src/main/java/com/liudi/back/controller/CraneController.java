@@ -87,7 +87,8 @@ public class CraneController extends WebController {
     @GetMapping("/{id}")
     public Message getCraneInfo(@PathVariable("id") String id) {
         try {
-            Crane crane = craneService.getById(id);
+
+            Crane crane = craneService.getDetail(id);
             return Success(crane);
         } catch (Exception e) {
             logger.error("查询异常：===》" + e);

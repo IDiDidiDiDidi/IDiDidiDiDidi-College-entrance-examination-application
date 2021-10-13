@@ -36,4 +36,10 @@ public class CraneServiceImpl extends BaseSerivceImpl<CraneMapper, Crane> implem
             return craneMapper.getByTonnage(t);
       }
 
+      @Override
+      public Crane getDetail(String id) {
+            Crane crane = super.getById(id);
+            return crane;
+      }
+
 }

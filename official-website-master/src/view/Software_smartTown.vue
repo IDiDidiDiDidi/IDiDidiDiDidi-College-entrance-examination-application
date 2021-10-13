@@ -33,45 +33,7 @@ export default {
   data() {
     return {
       // ** 吨 吊车 列表
-      craneList2: '',
-      craneList: [
-        {
-          id: "section-1",
-          title: "鑫卓8吨唐骏汽车吊",
-          eng_title: "Customize App",
-          img: require("@/assets/img/diaoche/8t_tangjun_1.jpg"),
-        },
-        {
-          id: "section-2",
-          title: "鑫卓8吨唐骏汽车吊",
-          eng_title: "Outsourcing",
-          img: require("@/assets/img/diaoche/8t_tangjun_2.jpg"),
-        },
-        {
-          id: "section-3",
-          title: "鑫卓8吨唐骏汽车吊",
-          eng_title: "eCommerce Site",
-          img: require("@/assets/img/diaoche/8t_tangjun_3.jpg"),
-        },
-        {
-          id: "section-1",
-          title: "鑫卓8吨唐骏汽车吊",
-          eng_title: "Customize App",
-          img: require("@/assets/img/diaoche/8t_tangjun_1.jpg"),
-        },
-        {
-          id: "section-2",
-          title: "鑫卓8吨唐骏汽车吊",
-          eng_title: "Outsourcing",
-          img: require("@/assets/img/diaoche/8t_tangjun_2.jpg"),
-        },
-        {
-          id: "section-3",
-          title: "鑫卓8吨唐骏汽车吊",
-          eng_title: "eCommerce Site",
-          img: require("@/assets/img/diaoche/8t_tangjun_3.jpg"),
-        },
-      ],
+      craneList2: "",
     };
   },
   created() {
@@ -84,9 +46,10 @@ export default {
   methods: {
     async getList() {
       console.log("=========: start getDetail");
-      
 
-      const { data: res } = await this.axios.get("/crane/tonnage/" + this.$route.query.t);
+      const { data: res } = await this.axios.get(
+        "/crane/tonnage/" + this.$route.query.t
+      );
       // console.log(res);
       console.log("=========: res", res);
       if (res.code !== 0) {
@@ -97,7 +60,7 @@ export default {
     },
     ServiceClick(id) {
       this.$router.push({
-        name: "servicedetail",
+        name: "craneetail",
         params: {
           baseId: id,
         },

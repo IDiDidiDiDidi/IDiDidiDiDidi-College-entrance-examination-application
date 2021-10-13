@@ -35,7 +35,8 @@
           <p>山东鑫卓重工机械有限公司是专业生产和制造建筑设备和起重设备的企业。坐落于济宁市任城区长沟工业园，南邻历史悠久的京杭大运河，省道337从公司门口川过。距日东告诉下道口2公里，交通非常便利。</p>
           <p>公司研制开发的QLY3--QLY10系列，轮胎式起重机，特别适用于城乡建设，园林绿化。车站、码头、和电力设备的安装。公司现有120多人，起重专业电气工程师35人，高级工程师5人。</p>
           <h2 class="bigData-device">汽车吊/自制吊/三轮吊 &nbsp; 全设备支持</h2>
-          <a href="#" class="btn btn-lg btn-block btn-info">联系我们</a>
+          <a :href="'tel:' + phone" class="btn btn-lg btn-block btn-info">联系我们</a>
+           <!-- <a :href="'tel:' + phone">{{phone}}</a> -->
         </div>
       </div>
     </div>
@@ -44,11 +45,16 @@
       <div class="container contactUs-container wow slideInUp">
         <h1>您身边的吊车专家</h1>
         <h3>7x24小时提供出色的吊车服务</h3>
-        <button
+        <!-- <button
+          :href="'tel:' + phone"
           class="btn btn-default btn-sm"
           onmouseleave="this.style.borderColor='#ffffff'; this.style.backgroundColor='#ffffff'; this.style.color='#3f3f3f';"
           onmouseenter="this.style.backgroundColor='transparent'; this.style.borderColor='#ffffff'; this.style.color='#ffffff';"
-        >联系我们</button>
+        >联系我们</button> -->
+        <a :href="'tel:' + phone" class="btn btn-default btn-sm"
+        onmouseleave="this.style.borderColor='#ffffff'; this.style.backgroundColor='#ffffff'; this.style.color='#3f3f3f';"
+        onmouseenter="this.style.backgroundColor='transparent'; this.style.borderColor='#ffffff'; this.style.color='#ffffff';"
+        >联系我们</a>
         <div class="contactUs-contactWay">
           <span></span>
           <span></span>
@@ -141,6 +147,7 @@ export default {
   name: "HomePage",
   data() {
     return {
+      phone: '18853751648',
       swiperList: [
         {
           img: require("@/assets/img/banner1.png"),

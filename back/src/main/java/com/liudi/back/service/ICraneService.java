@@ -24,4 +24,11 @@ public interface ICraneService extends IService<Crane> {
      * @return
      */
     List<CraneVo> getByTonnage(String t);
+
+    /**
+     * 获取 吊车详情
+     * @param id
+     * @return
+     */
+    Crane getDetail(String id);
 }

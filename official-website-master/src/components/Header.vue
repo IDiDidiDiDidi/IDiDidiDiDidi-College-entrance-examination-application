@@ -19,24 +19,27 @@
     <div class="header-nav container hidden-xs">
       <!-- 导航logo -->
       <div class="header-nav-logo">
-        <img src="@/assets/img/logo_black.png">
+        <img src="@/assets/img/logo_black.png" />
       </div>
       <!-- 导航内容 -->
       <ul class="header-nav-wrapper">
         <li
-          v-for="(item,index) in navList"
+          v-for="(item, index) in navList"
           :key="index"
-          :class="index==navIndex?'active':''"
-          @click="navClick(index,item.name)"
+          :class="index == navIndex ? 'active' : ''"
+          @click="navClick(index, item.name)"
         >
           <router-link :to="item.path">
-            {{item.name}}
-            <span v-if="item.children.length>0" class="glyphicon glyphicon-menu-down"></span>
+            {{ item.name }}
+            <span
+              v-if="item.children.length > 0"
+              class="glyphicon glyphicon-menu-down"
+            ></span>
             <i class="underline"></i>
           </router-link>
-          <dl v-if="item.children.length>0">
-            <dt v-for="(i,n) in item.children" :key="n">
-              <router-link :to="i.path">{{i.name}}</router-link>
+          <dl v-if="item.children.length > 0">
+            <dt v-for="(i, n) in item.children" :key="n">
+              <router-link :to="i.path">{{ i.name }}</router-link>
             </dt>
           </dl>
         </li>
@@ -45,11 +48,15 @@
     <!-- 手机导航 -->
     <div class="header-nav-m container-fuild visible-xs">
       <div class="header-nav-m-logo">
-        <img class="center-block" src="@/assets/img/logo_black.png" alt="logo">
+        <img
+          class="center-block"
+          src="@/assets/img/logo_black.png"
+          alt="logo"
+        />
       </div>
       <!-- 导航栏 -->
       <div class="header-nav-m-menu text-center">
-        {{menuName}}
+        {{ menuName }}
         <div
           class="header-nav-m-menu-wrapper"
           data-toggle="collapse"
@@ -61,15 +68,15 @@
         <!-- 导航内容 -->
         <ul id="menu" class="header-nav-m-wrapper collapse">
           <li
-            v-for="(item,index) in navList"
+            v-for="(item, index) in navList"
             :key="index"
-            :class="index==navIndex?'active':''"
-            @click="navClick(index,item.name)"
+            :class="index == navIndex ? 'active' : ''"
+            @click="navClick(index, item.name)"
             data-toggle="collapse"
             data-target="#menu"
           >
             <router-link :to="item.path">
-              {{item.name}}
+              {{ item.name }}
               <i class="underline"></i>
             </router-link>
           </li>
@@ -83,14 +90,16 @@ export default {
   name: "Header",
   data() {
     return {
-      navIndex: sessionStorage.getItem('navIndex') ? sessionStorage.getItem('navIndex') : 0,
+      navIndex: sessionStorage.getItem("navIndex")
+        ? sessionStorage.getItem("navIndex")
+        : 0,
       menuName: "首页",
       menuClass: "glyphicon glyphicon-menu-down",
       navList: [
         {
           name: "首页",
           path: "/",
-          children: []
+          children: [],
         },
         {
           name: "汽车吊",
@@ -98,62 +107,62 @@ export default {
           children: [
             {
               name: "8吨汽车吊",
-              path: "/software/smartTown"
+              path: "/software/smartTown?t=8",
             },
             {
               name: "10吨汽车吊",
-              path: "/software/bigData"
+              path: "/software/bigData?t=10",
             },
             {
               name: "12吨汽车吊",
-              path: "/software/smartTown"
+              path: "/software/smartTown?t=12",
             },
             {
               name: "16吨汽车吊",
-              path: "/software/bigData"
+              path: "/software/bigData?t=16",
             },
             {
               name: "18吨汽车吊",
-              path: "/software/bigData"
+              path: "/software/bigData?t=18",
             },
             {
               name: "20吨汽车吊",
-              path: "/software/bigData"
-            }
-          ]
+              path: "/software/bigData?t=20",
+            },
+          ],
         },
         {
           name: "自制吊",
           path: "/service",
-          children: []
+          children: [],
         },
         {
           name: "新闻动态",
           path: "/newsinformation",
-          children: []
+          children: [],
         },
         {
           name: "公司介绍",
           path: "/companyintroduction",
-          children: []
+          children: [],
         },
         {
           name: "工作机会",
           path: "/jobchance",
-          children: []
+          children: [],
         },
         {
           name: "联系我们",
           path: "/contactus",
-          children: []
-        }
-      ]
+          children: [],
+        },
+      ],
     };
   },
   methods: {
     navClick(index, name) {
       this.navIndex = index;
-      sessionStorage.setItem('navIndex',index)
+      sessionStorage.setItem("navIndex", index);
       this.menuName = name;
     },
     menuClick() {
@@ -162,8 +171,8 @@ export default {
       } else {
         this.menuClass = "glyphicon glyphicon-menu-down";
       }
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped>

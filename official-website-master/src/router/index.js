@@ -94,6 +94,14 @@ export default new Router({
           meta: {
             title: '自制吊'
           }
+        },
+        {
+          path: '/cranedetail',
+          name: 'craneetail',
+          component: resolve => require(['@/view/CraneDetail'],resolve),
+          meta: {
+            title: '汽车吊'
+          }
         }
       ]
     }

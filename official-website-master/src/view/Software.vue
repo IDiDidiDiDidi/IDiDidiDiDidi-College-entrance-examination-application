@@ -5,7 +5,9 @@
                 <ul class="left-container wow bounceInLeft">
                     <p>汽车吊</p>
                     <li v-for="(item,index) in tonnageList" :key="index">
-                        <router-link :to=item.path>{{item.name}}</router-link>
+                        <router-link :to=item.path @click.native="refresh">
+                            {{item.name}}
+                        </router-link>
                     </li>
                 </ul>
             </div>
@@ -50,6 +52,11 @@ export default {
         var wow = new WOW();
         wow.init();
     },
+    methods:{
+　　　　refresh:function(){
+　　　　　　this.$router.go(0);  
+　　　　}
+　　}
 }
 </script>
 <style scoped>

@@ -15,7 +15,10 @@ import com.baomidou.mybatisplus.annotation.TableName;
 @Data
 @TableName("crane")
 public class Crane extends InfoEntity {
-
+    /**
+     * 汽车吊/自制吊/orther
+     */
+    private String type;
     /**
      * 车名
      */
@@ -32,6 +35,10 @@ public class Crane extends InfoEntity {
      * 是否自制
      */
     private String isSelfMade;
+    /**
+     * 副钩绞车
+     */
+    private String secondaryHookWinch;
     /**
      * 主钩绞车
      */
@@ -128,8 +135,35 @@ public class Crane extends InfoEntity {
      * 选配
      */
     private String optional;
-
     private String img;
+    /**
+     * 发动机三泵
+     */
+    private String engineThreePumps;
+    /**
+     * 电机
+     */
+    private String motorThreePumps;
+    /**
+     * 中心回转
+     */
+    private String centerRotation;
+    /**
+     * 电机功率
+     */
+    private String motorPower;
+    /**
+     * 起升速度（副主钩）
+     */
+    private Double liftingSpeed;
+    /**
+     * 大臂
+     */
+    private String bigArm;
+    /**
+     * 回转速度
+     */
+    private Double swingSpeed;
 
-    private String type;
 }
+

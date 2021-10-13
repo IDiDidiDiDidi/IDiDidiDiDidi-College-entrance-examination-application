@@ -29,6 +29,8 @@ public class CraneDto extends PageDto {
     private String creator;
     @ApiModelProperty("逻辑删除（0:未删除,1:删除）")
     private Boolean isDelete;
+    @ApiModelProperty("汽车吊/自制吊/orther")
+    private String type;
     @ApiModelProperty("车名")
     private String name;
     @ApiModelProperty("吨位")
@@ -37,6 +39,8 @@ public class CraneDto extends PageDto {
     private String licenseColour;
     @ApiModelProperty("是否自制")
     private String isSelfMade;
+    @ApiModelProperty("副钩绞车")
+    private String secondaryHookWinch;
     @ApiModelProperty("主钩绞车")
     private String mainHookWinch;
     @ApiModelProperty("底盘型号")
@@ -85,4 +89,20 @@ public class CraneDto extends PageDto {
     private String otherConfiguration;
     @ApiModelProperty("选配")
     private String optional;
+    @ApiModelProperty("")
+    private String img;
+    @ApiModelProperty("发动机三泵")
+    private String engineThreePumps;
+    @ApiModelProperty("电机")
+    private String motorThreePumps;
+    @ApiModelProperty("中心回转")
+    private String centerRotation;
+    @ApiModelProperty("电机功率")
+    private String motorPower;
+    @ApiModelProperty("起升速度（副主钩）")
+    private Double liftingSpeed;
+    @ApiModelProperty("大臂")
+    private String bigArm;
+    @ApiModelProperty("回转速度")
+    private Double swingSpeed;
 }
