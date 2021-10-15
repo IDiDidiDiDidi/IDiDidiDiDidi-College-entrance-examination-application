@@ -31,4 +31,11 @@ public interface ICraneService extends IService<Crane> {
      * @return
      */
     Crane getDetail(String id);
+
+    /**
+     * 获取该车所有照片信息
+     * @param id
+     * @return
+     */
+    List<String> getCraneImgList(String id);
 }

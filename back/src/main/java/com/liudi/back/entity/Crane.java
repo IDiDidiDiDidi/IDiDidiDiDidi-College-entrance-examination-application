@@ -155,7 +155,7 @@ public class Crane extends InfoEntity {
     /**
      * 起升速度（副主钩）
      */
-    private Double liftingSpeed;
+    private String liftingSpeed;
     /**
      * 大臂
      */
@@ -163,7 +163,7 @@ public class Crane extends InfoEntity {
     /**
      * 回转速度
      */
-    private Double swingSpeed;
+    private String swingSpeed;
 
 }
 

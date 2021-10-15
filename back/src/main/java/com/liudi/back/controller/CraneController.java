@@ -83,11 +83,10 @@ public class CraneController extends WebController {
         }
     }
 
-    @ApiOperation(value = "数据详情")
+    @ApiOperation(value = "数据详情", response = CraneVo.class)
     @GetMapping("/{id}")
     public Message getCraneInfo(@PathVariable("id") String id) {
         try {
-
             Crane crane = craneService.getDetail(id);
             return Success(crane);
         } catch (Exception e) {
@@ -95,6 +94,19 @@ public class CraneController extends WebController {
             return Error(e.getMessage());
         }
     }
+
+    @ApiOperation(value = "该车详细照片信息")
+    @GetMapping("/img/{id}")
+    public Message getCraneImgList(@PathVariable("id") String id) {
+        try {
+            List<String> imgs = craneService.getCraneImgList(id);
+            return Success(imgs);
+        } catch (Exception e) {
+            logger.error("查询异常：===》" + e);
+            return Error(e.getMessage());
+        }
+    }
+
 
     @ApiOperation(value = "根据id更新")
     @PutMapping()

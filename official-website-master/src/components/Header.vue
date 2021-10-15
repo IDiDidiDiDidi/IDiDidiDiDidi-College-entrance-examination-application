@@ -103,7 +103,7 @@ export default {
         },
         {
           name: "汽车吊",
-          path: "/software",
+          path: "/software/smartTown?t=8",
           children: [
             {
               name: "8吨汽车吊",
@@ -111,7 +111,7 @@ export default {
             },
             {
               name: "10吨汽车吊",
-              path: "/software/bigData?t=10",
+              path: "/software/smartTown?t=10",
             },
             {
               name: "12吨汽车吊",
@@ -119,15 +119,15 @@ export default {
             },
             {
               name: "16吨汽车吊",
-              path: "/software/bigData?t=16",
+              path: "/software/smartTown?t=16",
             },
             {
               name: "18吨汽车吊",
-              path: "/software/bigData?t=18",
+              path: "/software/smartTown?t=18",
             },
             {
               name: "20吨汽车吊",
-              path: "/software/bigData?t=20",
+              path: "/software/smartTown?t=20",
             },
           ],
         },

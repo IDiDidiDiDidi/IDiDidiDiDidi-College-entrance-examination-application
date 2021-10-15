@@ -6,15 +6,11 @@ import App from './App'
 /* 路由 */
 import router from './router'
 
-/* axios */
-// import axios from './api'
-// import api from './api/api'
-// Vue.prototype.http = axios;
-// Vue.prototype.api = api;
-
-
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+Vue.use(ElementUI)
 
 Vue.use(VueAxios,axios);
 

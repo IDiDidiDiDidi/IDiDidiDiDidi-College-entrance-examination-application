@@ -42,4 +42,10 @@ public class CraneServiceImpl extends BaseSerivceImpl<CraneMapper, Crane> implem
             return crane;
       }
 
+      @Override
+      public List<String> getCraneImgList(String id) {
+            List<String> imgs = craneMapper.getCraneImgList(id);
+            return imgs;
+      }
+
 }

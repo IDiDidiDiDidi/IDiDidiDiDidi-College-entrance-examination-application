@@ -100,9 +100,9 @@ public class CraneDto extends PageDto {
     @ApiModelProperty("电机功率")
     private String motorPower;
     @ApiModelProperty("起升速度（副主钩）")
-    private Double liftingSpeed;
+    private String liftingSpeed;
     @ApiModelProperty("大臂")
     private String bigArm;
     @ApiModelProperty("回转速度")
-    private Double swingSpeed;
+    private String swingSpeed;
 }

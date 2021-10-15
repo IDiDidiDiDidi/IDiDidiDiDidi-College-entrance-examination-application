@@ -23,7 +23,7 @@ public interface CraneMapper extends BaseMapper<Crane> {
 
     List<Crane> findListPage(Page page, @Param("crane") Crane crane);
 
-//    List<String> getByTonnage(@Param("t") String t);
-
     List<CraneVo> getByTonnage(@Param("t") String t);
+
+    List<String> getCraneImgList(@Param("id") String id);
 }

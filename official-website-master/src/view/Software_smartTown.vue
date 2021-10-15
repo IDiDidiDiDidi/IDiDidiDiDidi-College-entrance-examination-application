@@ -61,9 +61,15 @@ export default {
     ServiceClick(id) {
       this.$router.push({
         name: "craneetail",
-        params: {
-          baseId: id,
+        // path: "/craneetail",
+        query: {
+          id: id,
         },
+        // query 是放在请求路径中的 this.$route.query.id
+        // params 是隐藏起来放在 this.$route.params.baseId中 
+        // params: {
+        //   id: id,
+        // },
       });
     },
   },

@@ -114,5 +114,16 @@
             is_self_made = 0
           and tonnage = #{t}
     </select>
+    <select id="getCraneImgList" resultType="java.lang.String">
+        SELECT
+            img
+        FROM
+            crane_img
+        WHERE
+            crane_base_id = #{id}
+          and is_delete = 0
+        ORDER BY
+            number ASC
+    </select>
 
 </mapper>

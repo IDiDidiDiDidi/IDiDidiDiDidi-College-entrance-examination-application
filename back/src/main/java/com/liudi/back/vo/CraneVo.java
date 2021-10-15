@@ -98,10 +98,10 @@ public class CraneVo extends BaseVo {
     @ApiModelProperty(value = "电机功率")
     private String motorPower;
     @ApiModelProperty(value = "起升速度（副主钩）")
-    private Double liftingSpeed;
+    private String liftingSpeed;
     @ApiModelProperty(value = "大臂")
     private String bigArm;
     @ApiModelProperty(value = "回转速度")
-    private Double swingSpeed;
+    private String swingSpeed;
 
 }
