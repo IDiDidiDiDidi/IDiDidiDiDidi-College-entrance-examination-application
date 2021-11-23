@@ -11,6 +11,7 @@
           <div class="grid-content">
             <!-- 中间搜索card -->
             <el-card class="box-card">
+              <h2>2020 年山东高考成绩查询</h2>
               <div> 
                 <el-alert
                  title="请输入您要查询的分数和范围"
