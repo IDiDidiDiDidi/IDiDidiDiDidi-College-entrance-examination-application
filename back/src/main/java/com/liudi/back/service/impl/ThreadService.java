@@ -30,6 +30,7 @@ public class ThreadService {
                 e.setMajorNo(e.getMajor().substring(0, 2));
                 e.setYear(year + "");
                 e.setBatch(batch);
+                e.setCreator("LD");
                 sdVoluntaryReportMapper.insert(e);
                 return e;
             }).collect(Collectors.toList());

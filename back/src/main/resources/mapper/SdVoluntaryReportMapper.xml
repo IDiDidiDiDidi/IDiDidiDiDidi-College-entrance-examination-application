@@ -23,6 +23,7 @@
         <result column="year" property="year"/>
         <result column="batch" property="batch"/>
         <result column="level" property="level"/>
+        <result column="remark" property="remark"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->
@@ -79,8 +80,8 @@
         svr.year
         FROM
         sd_voluntary_report svr,
-        school_address sa,
-        sys_area area
+        school_address sa
+        ,sys_area area
         <where>
             svr.is_delete = 0
             and svr.school_no = sa.school_no
@@ -99,6 +100,38 @@
         </where>
         GROUP BY svr.school_name
     </select>
+
+    <select id="newSmartSearch" resultType="com.liudi.back.vo.SmartSearchVo">
+        SELECT
+        svr.school_no as schoolNo,
+        svr.school_name,
+        count( * ) AS count,
+        svr.lowest_score,
+        svr.lowest_position,
+        sa.formatted_address as address,
+        svr.year
+        FROM
+        sd_voluntary_report svr
+        join school_address sa on sa.school_no = svr.school_no
+        join sys_area area on
+        <choose>
+            <when test="dto.cityId == null or dto.cityId == ''">
+                area.base_name = sa.province
+            </when>
+            <otherwise>
+                area.base_name = sa.city
+            </otherwise>
+        </choose>
+        <where>
+            svr.is_delete = 0
+            <if test="dto.areaBaseId !=null and dto.areaBaseId != ''">and area.base_id =  #{dto.areaBaseId}</if>
+            and svr.lowest_score &gt; (#{dto.score} - #{dto.scoreRange})
+            and svr.lowest_score &lt; (#{dto.score} + #{dto.scoreRange})
+            <if test= "dto.year !=null and dto.year != ''"> and year = #{dto.year}</if>
+        </where>
+        GROUP BY svr.school_name
+    </select>
+
 
     <select id="getDetail" resultMap="BaseResultMap">
         select <include refid="Base_Column_List" /> from sd_voluntary_report where school_no = #{id}

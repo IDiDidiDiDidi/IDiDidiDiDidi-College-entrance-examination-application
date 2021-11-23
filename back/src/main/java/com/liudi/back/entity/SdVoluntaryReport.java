@@ -74,4 +74,8 @@ public class SdVoluntaryReport extends InfoEntity {
      */
     private String level;
 
+    /**
+     * 备注
+     */
+    private String remark;
 }

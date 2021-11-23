@@ -6,11 +6,18 @@
     </el-header>
     <el-main>
       <el-row :gutter="20">
-        <el-col :span="4"><div class="grid-content"></div></el-col>
-        <el-col :span="16">
+        <el-col :span="2"><div class="grid-content"></div></el-col>
+        <el-col :span="20">
           <div class="grid-content">
             <!-- 中间搜索card -->
             <el-card class="box-card">
+              <div> 
+                <el-alert
+                 title="请输入您要查询的分数和范围"
+                 center
+                 type="info">
+                </el-alert>
+              </div>
               <!-- 搜索 -->
               <div class="search_div">
                 <!-- 搜索框 -->
@@ -30,10 +37,9 @@
 
                     <el-col :span="3">
                       <el-form-item label="专业">
-                        <el-input v-model="queryInfo.score"></el-input>
+                        <el-input v-model="queryInfo.professional"></el-input>
                       </el-form-item>
                     </el-col>
-
 
                     <el-col :span="3">
                       <el-form-item label="年份">
@@ -100,8 +106,10 @@
                     width="55"
                   ></el-table-column>
                   <!-- 序号 -->
-                  <el-table-column type="index" width="50"> </el-table-column>
+                  <el-table-column type="index" width="50" label="序号"></el-table-column>
                   <!--  -->
+                  <el-table-column property="year" label="年份" width="50">
+                  </el-table-column>
                   <el-table-column property="schoolName" label="学校">
                   </el-table-column>
                   <el-table-column property="address" label="地址">
@@ -110,8 +118,7 @@
                   </el-table-column>
                   <el-table-column property="lowestScore" label="最低录取分数">
                   </el-table-column>
-                  <el-table-column property="year" label="年份">
-                  </el-table-column>
+                  
                   <el-table-column
                     property="lowestPosition"
                     label="最低录取名次"
@@ -160,10 +167,11 @@ export default {
       //   查询参数
       queryInfo: {
         score: 550,
-        scoreRange: 100,
-        provinceId: '',
-        cityId: '',
-        year: '',
+        scoreRange: 30,
+        professional: '软件工程',
+        provinceId: "",
+        cityId: "",
+        year: 2020,
         // 当前页码
         pageNum: 1,
         // 当前每页显示多少条数据
@@ -185,8 +193,8 @@ export default {
       areaCityList: [],
       province: "",
       city: "",
-      val:'',
-      id:'', 
+      val: "",
+      id: "",
     };
   },
   created() {
@@ -278,20 +286,19 @@ export default {
     handleCurrentChange(newPage) {
       console.log(newPage);
       this.queryInfo.pageNum = newPage;
+      console.log("=======this.queryInfo.pageNum" + this.queryInfo.pageNum);
       this.getSearch();
     },
     handleDetail(val) {
-      console.log("===============schoolNo: " + val.schoolNo)
+      console.log("===============schoolNo: " + val.schoolNo);
       // this.baseId = val.baseId;
       const { href } = this.$router.resolve({
-          path: "/smartSearch/detail",
-          query: { schoolNo: val.schoolNo,
-                   schoolName: val.schoolName
-                 }
-        });
-        // window.open("#/smartSearch/detail", "_blank");
-        window.open(href, "_blank");
-    }
+        path: "/smartSearch/detail",
+        query: { schoolNo: val.schoolNo, schoolName: val.schoolName },
+      });
+      // window.open("#/smartSearch/detail", "_blank");
+      window.open(href, "_blank");
+    },
   },
 };
 </script>

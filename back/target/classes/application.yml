@@ -2,12 +2,13 @@ server:
   port: 7350
 
 spring:
-  elasticsearch:
-    rest:
-      uris: http://localhost:8183
+#  elasticsearch:
+#    rest:
+#      uris: http://localhost:8183
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://39.96.72.22:3306/smart_search_application?serverTimezone=GMT%2B8&characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true&serverTimezone=GMT%2B8
+#    url: jdbc:mysql://39.96.72.22:3306/smart_search_application_test?serverTimezone=GMT%2B8&characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true&serverTimezone=GMT%2B8
+    url: jdbc:mysql://localhost:3306/smart_search_application_test?serverTimezone=GMT%2B8&characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true&serverTimezone=GMT%2B8
     username: root
     password: 123456
     initial-size: 10
@@ -55,4 +56,4 @@ task:
     queueCapacity: 8
     keepAlive: 60
 
-allowedOrigins: http://localhost:8089
+#allowedOrigins: http://localhost:8089/

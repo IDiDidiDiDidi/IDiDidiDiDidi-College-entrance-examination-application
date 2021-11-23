@@ -31,7 +31,7 @@ public class BaiduMapTest {
         System.out.println(JSON.toJSONString(baiduMapAddressBean));
     }
 
-//    @Test
+    @Test
     void insertToSchoolAddress() {
         List<SdVoluntaryReportVo> vos = sdVoluntaryReportMapper.groupBySchoolName();
         schoolAddressService.insertByBaidu(vos);

@@ -7,7 +7,8 @@ import './assets/fonts/iconfont.css'
 import './assets/css/global.css'
 import axios from 'axios'
 
-axios.defaults.baseURL = 'http://39.96.72.22:7350'
+// axios.defaults.baseURL = 'http://39.96.72.22:7350'
+axios.defaults.baseURL = 'http://localhost:7350'
 // axios.defaults.baseURL = 'http://127.0.0.1:8888/api/private/v1/'
 Vue.prototype.$http = axios
 axios.defaults.headers['Content-Type'] = 'application/json;charset=utf-8'
