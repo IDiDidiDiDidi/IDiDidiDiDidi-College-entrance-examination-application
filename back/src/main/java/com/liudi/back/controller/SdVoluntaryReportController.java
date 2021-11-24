@@ -46,16 +46,16 @@ public class SdVoluntaryReportController extends WebController {
     @ApiOperation(value = "自定义查询列表-分页")
     @GetMapping("list")
     public Message findSdVoluntaryReportListPage(SearchDto dto) {
-//        try {
+        try {
             Integer pageSize = dto.getPageSize();
             Integer pageNum = dto.getPageNum();
             Page<SdVoluntaryReport> page = startPage(pageNum, pageSize);
             List<SmartSearchVo> listPage = sdVoluntaryReportService.findListPage(page, dto);
             return Message.success(getPageResult(listPage, pageNum, pageSize, (int) page.getTotal()));
-//        } catch (Exception e) {
-//            logger.error("查询异常：===》" + e);
-//            return Error(e.getMessage());
-//        }
+        } catch (Exception e) {
+            logger.error("查询异常：===》" + e);
+            return Error(e.getMessage());
+        }
     }
 
 

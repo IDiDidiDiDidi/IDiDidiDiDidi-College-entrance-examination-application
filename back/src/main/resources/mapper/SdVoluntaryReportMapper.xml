@@ -68,40 +68,7 @@
         GROUP BY
         school_name
     </select>
-
     <select id="smartSearch" resultType="com.liudi.back.vo.SmartSearchVo">
-        SELECT
-        svr.school_no as schoolNo,
-        svr.school_name,
-        count( * ) AS count,
-        svr.lowest_score,
-        svr.lowest_position,
-        sa.formatted_address as address,
-        svr.year
-        FROM
-        sd_voluntary_report svr,
-        school_address sa
-        ,sys_area area
-        <where>
-            svr.is_delete = 0
-            and svr.school_no = sa.school_no
-            <if test="dto.areaBaseId !=null and dto.areaBaseId != ''">and area.base_id =  #{dto.areaBaseId}</if>
-            <choose>
-                <when test="dto.cityId == null or dto.cityId == ''">
-                    and area.base_name = sa.province
-                </when>
-                <otherwise>
-                    and area.base_name = sa.city
-                </otherwise>
-            </choose>
-            and svr.lowest_score &gt; (#{dto.score} - #{dto.scoreRange})
-            and svr.lowest_score &lt; (#{dto.score} + #{dto.scoreRange})
-            <if test= "dto.year !=null and dto.year != ''"> and year = #{dto.year}</if>
-        </where>
-        GROUP BY svr.school_name
-    </select>
-
-    <select id="newSmartSearch" resultType="com.liudi.back.vo.SmartSearchVo">
         SELECT
         svr.school_no as schoolNo,
         svr.school_name,
@@ -125,8 +92,14 @@
         <where>
             svr.is_delete = 0
             <if test="dto.areaBaseId !=null and dto.areaBaseId != ''">and area.base_id =  #{dto.areaBaseId}</if>
-            and svr.lowest_score &gt; (#{dto.score} - #{dto.scoreRange})
-            and svr.lowest_score &lt; (#{dto.score} + #{dto.scoreRange})
+            <if test="dto.score !=null and dto.score != 0 and dto.scoreRange !=null and dto.scoreRange != 0 ">
+                and svr.lowest_score &gt; (#{dto.score} - #{dto.scoreRange})
+                and svr.lowest_score &lt; (#{dto.score} + #{dto.scoreRange})
+            </if>
+            <if test="dto.rank !=null and dto.rank != 0 and dto.rankRange !=null and dto.rankRange != 0 ">
+                and svr.lowest_position &gt; (#{dto.rank} - #{dto.rankRange})
+                and svr.lowest_position &lt; (#{dto.rank} + #{dto.rankRange})
+            </if>
             <if test= "dto.year !=null and dto.year != ''"> and year = #{dto.year}</if>
         </where>
         GROUP BY svr.school_name

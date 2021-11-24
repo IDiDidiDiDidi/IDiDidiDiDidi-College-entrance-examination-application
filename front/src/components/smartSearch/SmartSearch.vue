@@ -1,6 +1,7 @@
 <template>
   <el-container class="home-container">
     <el-header>
+
       <h1></h1>
       <el-button type="info" @click="logout">退出</el-button>
     </el-header>

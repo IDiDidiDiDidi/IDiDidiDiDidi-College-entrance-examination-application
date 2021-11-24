@@ -17,6 +17,9 @@ public class SearchDto extends PageDto {
     @ApiModelProperty("排名")
     private Integer rank;
 
+    @ApiModelProperty("排名范围")
+    private Integer rankRange;
+
     @ApiModelProperty("year")
     private String year;
 
