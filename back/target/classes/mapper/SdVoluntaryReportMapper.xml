@@ -107,7 +107,17 @@
 
 
     <select id="getDetail" resultMap="BaseResultMap">
-        select <include refid="Base_Column_List" /> from sd_voluntary_report where school_no = #{id}
+        select <include refid="Base_Column_List" /> from sd_voluntary_report where school_no = #{id} order by year, major_no
+    </select>
+
+    <select id="findSchoolListPage" resultType="com.liudi.back.vo.SchoolVo">
+        SELECT
+            schoolNo, schoolName, address
+        FROM
+            shcool_view
+        <where>
+            <if test= "dto.schoolName !=null and dto.schoolName != ''"> schoolName LIKE CONCAT( '%', #{dto.schoolName}, '%' )</if>
+        </where>
     </select>
 
 

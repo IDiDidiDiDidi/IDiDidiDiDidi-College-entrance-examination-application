@@ -10,7 +10,7 @@
               <h2>2021 年山东高考成绩查询</h2>
               <div> 
                 <el-alert
-                 title="请输入您要查询的分数和范围"
+                 title="请输入您要查询的排名和范围"
                  center
                  type="info">
                 </el-alert>
@@ -291,7 +291,7 @@ export default {
       console.log("===============schoolNo: " + val.schoolNo);
       // this.baseId = val.baseId;
       const { href } = this.$router.resolve({
-        path: "/smartSearch/detail",
+        path: "/detail",
         query: { schoolNo: val.schoolNo, schoolName: val.schoolName },
       });
       // window.open("#/smartSearch/detail", "_blank");

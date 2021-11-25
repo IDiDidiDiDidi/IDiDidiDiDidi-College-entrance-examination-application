@@ -1,9 +1,11 @@
 package com.liudi.back.controller;
 
 import com.liudi.back.core.base.WebController;
+import com.liudi.back.dto.SchoolQueryDto;
 import com.liudi.back.dto.SearchDto;
 import com.liudi.back.utils.BeanCopyUtil;
 import com.liudi.back.utils.Message;
+import com.liudi.back.vo.SchoolVo;
 import com.liudi.back.vo.SmartSearchVo;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,19 +60,21 @@ public class SdVoluntaryReportController extends WebController {
         }
     }
 
+    @ApiOperation(value = "查询学校 列表")
+    @GetMapping("school")
+    public Message findSdVoluntaryReportListPage(SchoolQueryDto dto) {
+        try {
+            Integer pageSize = dto.getPageSize();
+            Integer pageNum = dto.getPageNum();
+            Page<SdVoluntaryReport> page = startPage(pageNum, pageSize);
+            List<SchoolVo> listPage = sdVoluntaryReportService.findSchoolListPage(page, dto);
+            return Message.success(getPageResult(listPage, pageNum, pageSize, (int) page.getTotal()));
+        } catch (Exception e) {
+            logger.error("查询异常：===》" + e);
+            return Error(e.getMessage());
+        }
+    }
 
-//    @ApiOperation(value = "保存")
-//    @PostMapping("")
-//    public Message addSdVoluntaryReport(@RequestBody SdVoluntaryReportDto sdVoluntaryReportDto) {
-//        try {
-//            SdVoluntaryReport sdVoluntaryReport = BeanCopyUtil.convertBean(sdVoluntaryReportDto, SdVoluntaryReport.class);
-//            return Success(sdVoluntaryReportService.save(sdVoluntaryReport));
-//        } catch (Exception e) {
-//            logger.error("保存异常：===》" + e);
-//            return Error(e.getMessage());
-//        }
-//    }
-//
     @ApiOperation(value = "数据详情")
     @GetMapping("/{id}")
     public Message getSdVoluntaryReportInfo(@PathVariable("id") String id) {

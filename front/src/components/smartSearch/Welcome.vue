@@ -8,28 +8,70 @@
             <!-- 中间搜索card -->
             <el-card class="box-card">
               <h2>2021 年山东高考成绩查询</h2>
-
-              <el-form class="login_form" :model="loginForm" ref="loginFromRef">
-                <!-- 用户名 -->
-                <!-- <el-form-item prop="username">
-                  <el-input
-                    prefix-icon="iconfont icon-user"
-                    v-model="loginForm.username"
-                  ></el-input>
-                </el-form-item>
-                <el-form-item class="btns">
-                  <el-button type="primary" @click="login">登录</el-button>
-                </el-form-item> -->
+              <el-form
+                class="login_form"
+                :model="queryInfoForm"
+                ref="loginFromRef"
+              >
                 <div class="search_school">
                   <el-input
-                    v-model="schoolName"
+                    v-model="queryInfoForm.schoolName"
                     placeholder="请输入搜索学校"
                   ></el-input>
-                  <el-form-item class="btns">
-                    <el-button type="primary" @click="login">搜索</el-button>
+                  <el-form-item class="btns">&nbsp;
+                    <el-button type="primary" @click="querySchool"
+                      >搜索</el-button
+                    >
                   </el-form-item>
                 </div>
               </el-form>
+              <el-table
+                ref="singleTable"
+                :data="schoolList"
+                highlight-current-row
+                @current-change="handleCurrentChange"
+                style="width: 100%"
+              >
+                <!-- 多选框 -->
+                <el-table-column type="selection" width="55"></el-table-column>
+                <!-- 序号 -->
+                <el-table-column
+                  type="index"
+                  width="50"
+                  label="序号"
+                ></el-table-column>
+                <!--  -->
+                <el-table-column property="schoolNo" label="学校编号">
+                </el-table-column>
+                <el-table-column property="schoolName" label="学校">
+                </el-table-column>
+                <el-table-column property="address" label="地址">
+                </el-table-column>
+                <el-table-column label="详情">
+                  <template slot-scope="scope">
+                    <el-button
+                      size="mini"
+                      type="text"
+                      icon="el-icon-view"
+                      @click.stop="handleDetail(scope.row)"
+                      >详情</el-button
+                    >
+                  </template>
+                </el-table-column>
+              </el-table>
+              <div class="block">
+                <span class="demonstration"></span>
+                <el-pagination
+                  @size-change="handleSizeChange"
+                  @current-change="handleCurrentChange"
+                  :current-page="queryInfoForm.pageNum"
+                  :page-sizes="[10, 20, 30, 50]"
+                  :page-size="queryInfoForm.pageSize"
+                  layout="total, sizes, prev, pager, next, jumper"
+                  :total="total"
+                >
+                </el-pagination>
+              </div>
             </el-card>
           </div>
         </el-col>
@@ -43,15 +85,65 @@
 export default {
   data() {
     return {
-      schoolName: "",
       //   查询参数
-      queryInfo: {},
-      loginForm: {},
+      queryInfoForm: {
+        schoolName: "",
+        pageNum: 1,
+        // 当前每页显示多少条数据
+        pageSize: 10,
+      },
+      schoolList: [],
+      total: 0,
+      ipt2List: [
+        { label: "5", value: "5" },
+        { label: "10", value: "10" },
+        { label: "20", value: "20" },
+        { label: "30", value: "30" },
+      ],
     };
   },
-  created() {},
+  created() {
+    this.querySchool();
+  },
   methods: {
-    login() {},
+    async querySchool() {
+      console.log("========== search school " + this.queryInfoForm.schoolName);
+      const { data: res } = await this.$http.get("/search/school", {
+        params: this.queryInfoForm,
+      });
+      console.log(res);
+      if (res.code !== 0) {
+        return this.$message.error("获取学校列表失败");
+      }
+      this.schoolList = res.obj.content;
+      // console.log(this.scoreList);
+      this.total = res.obj.totalCount;
+    },
+    // 监听页码值改变的事件
+    handleCurrentChange(newPage) {
+      console.log(newPage);
+      this.queryInfoForm.pageNum = newPage;
+      console.log(
+        "=======this.queryInfoForm.pageNum" + this.queryInfoForm.pageNum
+      );
+      this.querySchool();
+    },
+    // 监听pagesize改变的事件
+    handleSizeChange(newSize) {
+      console.log(newSize);
+      this.queryInfo.pageSize = newSize;
+      this.getSearch();
+    },
+    handleDetail(val) {
+      console.log("===============schoolNo: " + val.schoolNo);
+      // this.baseId = val.baseId;
+      const { href } = this.$router.resolve({
+        path: "/detail",
+        query: { schoolNo: val.schoolNo, schoolName: val.schoolName },
+      });
+      // window.open("#/smartSearch/detail", "_blank");
+      window.open(href, "_blank");
+    },
   },
 };
 </script>

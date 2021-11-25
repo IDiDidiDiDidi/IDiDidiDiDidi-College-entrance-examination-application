@@ -1,5 +1,6 @@
 package com.liudi.back.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.liudi.back.entity.*;
 import com.liudi.back.mapper.SchoolAddressMapper;
 import com.liudi.back.mapper.SdVoluntaryReportMapper;
@@ -49,26 +50,32 @@ public class SchoolAddressServiceImpl implements ISchoolAddressService {
             log.info("========= 线程 - {}", Thread.currentThread().getName());
             String schoolName = e.getSchoolName();
             String schoolNo = e.getSchoolNo();
-            BaiduMapLngLatBean baiduMapLngLatBean = BaiduMapUtils.addressTolongitudea(schoolName);
-            Location location = baiduMapLngLatBean.getLocation();
-            BaiduMapAddressBean baiduMapAddressBean = BaiduMapUtils.longitudeToAddress(location.getLat(), location.getLng());
-            AddressComponent addressComponent = baiduMapAddressBean.getAddressComponent();
 
-            SchoolAddress schoolAddress = new SchoolAddress();
-            schoolAddress.setSchoolNo(schoolNo);
-            schoolAddress.setSchoolName(schoolName);
-            schoolAddress.setProvince(addressComponent.getProvince());
-            schoolAddress.setCity(addressComponent.getCity());
-            schoolAddress.setDistrict(addressComponent.getDistrict());
-            schoolAddress.setAdcode(addressComponent.getAdcode());
-            schoolAddress.setCityCode(addressComponent.getCity_level().toString());
-            schoolAddress.setCountry(addressComponent.getCountry());
-            schoolAddress.setCityCode(baiduMapAddressBean.getCityCode().toString());
-            schoolAddress.setFormattedAddress(baiduMapAddressBean.getFormatted_address());
-            schoolAddress.setLat(location.getLat());
-            schoolAddress.setLng(location.getLng());
+            QueryWrapper<SchoolAddress>  queryWrapper = new QueryWrapper<>();
+            queryWrapper.eq("school_no", schoolNo);
+            SchoolAddress selectOne = schoolAddressMapper.selectOne(queryWrapper);
+            if (selectOne == null){
+                BaiduMapLngLatBean baiduMapLngLatBean = BaiduMapUtils.addressTolongitudea(schoolName);
+                Location location = baiduMapLngLatBean.getLocation();
+                BaiduMapAddressBean baiduMapAddressBean = BaiduMapUtils.longitudeToAddress(location.getLat(), location.getLng());
+                AddressComponent addressComponent = baiduMapAddressBean.getAddressComponent();
 
-            int insert = schoolAddressMapper.insert(schoolAddress);
+                SchoolAddress schoolAddress = new SchoolAddress();
+                schoolAddress.setSchoolNo(schoolNo);
+                schoolAddress.setSchoolName(schoolName);
+                schoolAddress.setProvince(addressComponent.getProvince());
+                schoolAddress.setCity(addressComponent.getCity());
+                schoolAddress.setDistrict(addressComponent.getDistrict());
+                schoolAddress.setAdcode(addressComponent.getAdcode());
+                schoolAddress.setCityCode(addressComponent.getCity_level().toString());
+                schoolAddress.setCountry(addressComponent.getCountry());
+                schoolAddress.setCityCode(baiduMapAddressBean.getCityCode().toString());
+                schoolAddress.setFormattedAddress(baiduMapAddressBean.getFormatted_address());
+                schoolAddress.setLat(location.getLat());
+                schoolAddress.setLng(location.getLng());
+
+                int insert = schoolAddressMapper.insert(schoolAddress);
+            }
             return e;
         }).collect(Collectors.toList());
     }

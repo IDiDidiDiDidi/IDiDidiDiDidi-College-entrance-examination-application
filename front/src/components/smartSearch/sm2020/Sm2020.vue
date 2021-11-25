@@ -230,7 +230,7 @@ export default {
       });
       // console.log(res);
       if (res.code !== 0) {
-        return this.$message.error("获取用户列表失败");
+        return this.$message.error("获取学校列表失败");
       }
       this.scoreList = res.obj.content;
       // console.log(this.scoreList);
@@ -291,7 +291,7 @@ export default {
       console.log("===============schoolNo: " + val.schoolNo);
       // this.baseId = val.baseId;
       const { href } = this.$router.resolve({
-        path: "/smartSearch/detail",
+        path: "/detail",
         query: { schoolNo: val.schoolNo, schoolName: val.schoolName },
       });
       // window.open("#/smartSearch/detail", "_blank");

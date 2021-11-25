@@ -15,6 +15,8 @@
           :data="detail"
           highlight-current-row
           style="width: 100%"
+          height='500'
+          border=true
         >
           <!-- 多选框 -->
           <el-table-column type="selection" width="55"></el-table-column>
