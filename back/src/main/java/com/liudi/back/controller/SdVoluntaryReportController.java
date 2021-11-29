@@ -5,8 +5,10 @@ import com.liudi.back.dto.SchoolQueryDto;
 import com.liudi.back.dto.SearchDto;
 import com.liudi.back.utils.BeanCopyUtil;
 import com.liudi.back.utils.Message;
+import com.liudi.back.vo.MinMaxVo;
 import com.liudi.back.vo.SchoolVo;
 import com.liudi.back.vo.SmartSearchVo;
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -24,7 +26,9 @@ import com.liudi.back.entity.SdVoluntaryReport;
 import com.liudi.back.dto.SdVoluntaryReportDto;
 import com.liudi.back.service.ISdVoluntaryReportService;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -75,41 +79,45 @@ public class SdVoluntaryReportController extends WebController {
         }
     }
 
-    @ApiOperation(value = "数据详情")
+    @ApiOperation(value = "学校数据详情")
     @GetMapping("/{id}")
     public Message getSdVoluntaryReportInfo(@PathVariable("id") String id) {
         try {
-            List<SdVoluntaryReport> sdVoluntaryReport = sdVoluntaryReportService.getById(id);
-            return Success(sdVoluntaryReport);
+            // 按照年分，一年一个图一个表： 20、21 两年就是弄两个card 每个card中放一个图一个表
+
+            Map<String, Object> map = new HashMap<>();
+            Map<String, List<SdVoluntaryReport>> sdVoluntaryReportList = sdVoluntaryReportService.getById(id);
+            // 该学校的这些年来录取专业的最高分最低分
+            List<MinMaxVo> scoreMinMaxList = sdVoluntaryReportService.getScoreMinMax(id);
+            // 该学校的这些年来录取专业的最高排名最排名
+            List<MinMaxVo> positionMinMaxList =sdVoluntaryReportService.getPositionMinMax(id);
+            map.put("sdVoluntaryReportList", sdVoluntaryReportList);
+            map.put("positionMinMaxList", positionMinMaxList);
+            map.put("scoreMinMaxList", scoreMinMaxList);
+            // 该学校
+
+
+            return Success(map);
         } catch (Exception e) {
             logger.error("查询异常：===》" + e);
             return Error(e.getMessage());
         }
     }
-//
-//    @ApiOperation(value = "根据id更新")
-//    @PutMapping()
-//    public Message updatesdVoluntaryReport(@RequestBody SdVoluntaryReportDto sdVoluntaryReportDto) {
-//        try {
-//            SdVoluntaryReport sdVoluntaryReport = BeanCopyUtil.convertBean(sdVoluntaryReportDto, SdVoluntaryReport.class);
-//            sdVoluntaryReportService.updateById(sdVoluntaryReport);
-//            return Success();
-//        } catch (Exception e) {
-//            logger.error("更新异常：===》" + e);
-//            return Error(e.getMessage());
-//        }
-//    }
-//
-//    @ApiOperation(value = "根据baseId逻辑删除")
-//    @DeleteMapping("/{id}")
-//    public Message updateByIsDelete(@PathVariable("id") String id) {
-//        try {
-//            List<String> strings = StringUtil.splitStr(id, ",");
-//            return Success(sdVoluntaryReportService.removeByIds(strings));
-//        } catch (Exception e) {
-//            logger.error("删除异常：===》" + e);
-//            return Error(e.getMessage());
-//        }
-//    }
+
+    //学校 - 专业 - 每年录取分数变化 + 排名变化
+    @ApiOperation(value = "学校数据详情")
+    @GetMapping("/{id}/{major}")
+    public Message getMajorDetail(@PathVariable("id") String id, @PathVariable("major") String major) {
+        try {
+
+            Map<String, Object> map = new HashMap<>();
+            // 该学校的这些年来录取专业的最高排名最排名
+            return Success(map);
+        } catch (Exception e) {
+            logger.error("查询异常：===》" + e);
+            return Error(e.getMessage());
+        }
+    }
+
 
 }

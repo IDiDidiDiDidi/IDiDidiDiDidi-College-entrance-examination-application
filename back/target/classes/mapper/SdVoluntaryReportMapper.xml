@@ -119,6 +119,30 @@
             <if test= "dto.schoolName !=null and dto.schoolName != ''"> schoolName LIKE CONCAT( '%', #{dto.schoolName}, '%' )</if>
         </where>
     </select>
+    <select id="getPositionMinMax" resultType="com.liudi.back.vo.MinMaxVo">
+        SELECT
+            MAX(lowest_position) as max,
+            MIN(lowest_position) as min,
+            year
+        FROM
+            sd_voluntary_report
+        WHERE
+            school_no = #{id}
+        GROUP BY
+            `year`
+    </select>
+    <select id="getScoreMinMax" resultType="com.liudi.back.vo.MinMaxVo">
+        SELECT
+            IFNULL(MAX(lowest_score),0) as max,
+            IFNULL(min(lowest_score),0)	 as min,
+	        year
+        FROM
+            sd_voluntary_report
+        WHERE
+            school_no = #{id}
+        GROUP BY
+            `year`
+    </select>
 
 
 </mapper>

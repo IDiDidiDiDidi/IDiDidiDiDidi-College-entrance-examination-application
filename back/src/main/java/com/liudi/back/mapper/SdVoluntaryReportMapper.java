@@ -9,10 +9,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import java.util.List;
 
-import com.liudi.back.vo.SchoolAddressVo;
-import com.liudi.back.vo.SchoolVo;
-import com.liudi.back.vo.SdVoluntaryReportVo;
-import com.liudi.back.vo.SmartSearchVo;
+import com.liudi.back.vo.*;
 import org.apache.ibatis.annotations.Param;
 
 /**
@@ -51,4 +48,8 @@ public interface SdVoluntaryReportMapper extends BaseMapper<SdVoluntaryReport> {
      */
     List<SchoolVo> findSchoolListPage(Page<SdVoluntaryReport> page,
                                       @Param("dto") SchoolQueryDto dto);
+
+    List<MinMaxVo> getPositionMinMax(String id);
+
+    List<MinMaxVo> getScoreMinMax(String id);
 }

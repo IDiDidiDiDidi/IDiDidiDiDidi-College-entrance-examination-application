@@ -44,6 +44,16 @@ const routes = [
 		name: 'detail',
 		component: () => import('../components/smartSearch/detail/Detail')
 	},
+	{
+		path: '/detailTest',
+		name: 'DetailTest',
+		component: () => import('../components/smartSearch/detail/DetailTest')
+	},
+	{
+		path: '/echart',
+		name: 'echart',
+		component: () => import('../components/EchartTest')
+	},
 ]
 
 const router = new VueRouter({

@@ -4,10 +4,12 @@ import com.liudi.back.dto.SchoolQueryDto;
 import com.liudi.back.dto.SearchDto;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.liudi.back.entity.SdVoluntaryReport;
+import com.liudi.back.vo.MinMaxVo;
 import com.liudi.back.vo.SchoolVo;
 import com.liudi.back.vo.SmartSearchVo;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -21,7 +23,7 @@ public interface ISdVoluntaryReportService {
 
     List<SmartSearchVo> findListPage(Page page, SearchDto sdVoluntaryReport);
 
-    List<SdVoluntaryReport> getById(String id);
+    Map<String, List<SdVoluntaryReport>> getById(String id);
 
     /**
      * 学校列表
@@ -30,4 +32,8 @@ public interface ISdVoluntaryReportService {
      * @return
      */
     List<SchoolVo> findSchoolListPage(Page<SdVoluntaryReport> page, SchoolQueryDto dto);
+
+    List<MinMaxVo> getScoreMinMax(String id);
+
+    List<MinMaxVo> getPositionMinMax(String id);
 }
