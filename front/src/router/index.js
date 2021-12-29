@@ -32,6 +32,11 @@ const routes = [
 				name: 'sm2021',
 				component: () => import('../components/smartSearch/sm2021/Sm2021')
 			},
+			{
+				path: '/es_test',
+				name: 'es_test',
+				component: () => import('../components/smartSearch/es_test/es_test')
+			},
 			// {
 			// 	path:'/detail',
 			// 	name:'detail',
@@ -50,9 +55,9 @@ const routes = [
 		component: () => import('../components/smartSearch/detail/DetailTest')
 	},
 	{
-		path: '/echart',
-		name: 'echart',
-		component: () => import('../components/EchartTest')
+		path: '/major',
+		name: 'major',
+		component: () => import('../components/smartSearch/major/Major')
 	},
 ]
 

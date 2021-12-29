@@ -165,7 +165,7 @@ export default {
       // this.baseId = val.baseId;
       const { href } = this.$router.resolve({
         path: "/major",
-        query: { majorNo: val.majorNo, majorName: val.majorName },
+        query: { majorNo: val.majorNo, major: val.major },
       });
       // window.open("#/smartSearch/detail", "_blank");
       window.open(href, "_blank");

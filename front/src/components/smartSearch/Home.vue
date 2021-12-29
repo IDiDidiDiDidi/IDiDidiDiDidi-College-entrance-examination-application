@@ -15,6 +15,7 @@
         <!-- <el-menu-item index="/sm2019">2019年高考成绩查询</el-menu-item> -->
         <el-menu-item index="/sm2020">2020年高考成绩查询</el-menu-item>
         <el-menu-item index="/sm2021">2021年高考成绩查询</el-menu-item>
+        <el-menu-item index="/es_test">es搜索测试</el-menu-item>
 
         <!-- <el-submenu index="2">
           <template slot="title">我的工作台</template>
