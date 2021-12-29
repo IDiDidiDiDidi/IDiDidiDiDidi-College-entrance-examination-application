@@ -57,3 +57,6 @@ task:
     keepAlive: 60
 
 #allowedOrigins: http://localhost:8089/
+
+es:
+  url: localhost:9200
